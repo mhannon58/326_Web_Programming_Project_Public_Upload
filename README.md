@@ -1,26 +1,27 @@
 # Team 44 Project
-Team Name
+
+#### Team Name
 
 Team 44
 
-Application Name
+#### Application Name
 
 OddJobs
 
-Team Overview
+#### Team Overview
 
 Evan Yan - evyan21 <br>
 Alec Xie - alecxiie <br>
 Ishan Bhardwaj - ibhardwaj007 <br>
 Max Hannon - mhannon58 
 
-Innovative Idea
+#### Innovative Idea
 
 The idea of our application is a task posting forum for the UMass campus. This application will have users create profiles with which they can both post and accept various small tasks on campus. Whether it's for moving out of a residence hall, finding tutors, bringing materials to a location, or saving a seat for someone at the dining hall, no job is too strange. The web app will be similar to the current apps Fiverr and Craigslist that let people post and accept job opportunities. The difference is that our application will be centered around UMass as a campus.
 
 User profiles will have ratings associated with them about how well each party was to work with: both the employer and the employee. An algorithm can be used to give priority to better rated performers for both the order in which jobs appear as well as priority for accepting a job. The main job listings page can have categories based on the type of job and the reward that is being given.
 
-Data 
+#### Data 
 
 User Data - The app will need to store user login information (email addresses, passwords, etc).
 
@@ -34,7 +35,7 @@ Reviews - Users can give reviews for tasks they worked on and their compensation
 
 Search history - The web app can maintain a limited history of tasks that a user viewed.
 
-Functionality
+#### Functionality
 
 Visiting and customizing profiles/pages - Users will be able to visit other users’ profiles by clicking on their profile pictures. There will also be a profile icon in the corner of the page for users to modify profile attributes and website settings. Information about the user including token transaction history, task acceptance history, and reputation in the form of tokens from completing requests will be displayed. Here, users can also view their search history.
 
@@ -50,6 +51,6 @@ User authentication (?) with school email - Users will use their school email to
 
 Reviewing profiles/commenting - Users can leave comments that factor into an individual’s reputation
 
-License includes the license you choose for your project. You must choose a license from the Open Source Initiative and include a link to the license in your README.md file. You must also include a copy of the license in your repository (LICENSE). For example, if you choose the MIT license, you would include the following in your README.md file: and you would include a copy of the license in your repository.
+#### License
 
 [MIT License] (https://opensource.org/licenses/MIT) 
