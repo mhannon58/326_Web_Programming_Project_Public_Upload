@@ -14,10 +14,10 @@ OddJobs
 
 Team Overview
 
-Evan Yan - evyan21
-Alec Xie - alecxiie
-Ishan Bhardwaj - ibhardwaj007
-Max Hannon - mhannon58
+Evan Yan - evyan21 <br>
+Alec Xie - alecxiie <br>
+Ishan Bhardwaj - ibhardwaj007 <br>
+Max Hannon - mhannon58 
 
 Innovative Idea
 
