@@ -6,10 +6,10 @@
 
 #### Team Overview
 
-Evan Yan - evyan21 <br>
-Alec Xie - alecxiie <br>
-Ishan Bhardwaj - ibhardwaj007 <br>
-Max Hannon - mhannon58 
+Evan Yan ([evyan21](https://github.com/evyan21)) <br>
+Alec Xie ([alecxiie](https://github.com/alecxiie)) <br>
+Ishan Bhardwaj ([ibhardwaj007](https://github.com/ibhardwaj007)) <br>
+Max Hannon ([mhannon58](https://github.com/mhannon58)) 
 
 ## Innovative Idea
 
@@ -49,4 +49,4 @@ Max Hannon - mhannon58
 
 ## License
 
-[MIT License] (https://opensource.org/licenses/MIT) 
+[MIT License](https://opensource.org/licenses/MIT) 
