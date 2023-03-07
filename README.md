@@ -1,9 +1,5 @@
 # Team 44 Project
 
-You are to start your team project here. Read the documentation for
-[Pr2: Creative Idea](https://umass-cs-326.github.io/docs/project/Idea/) and replace this paragraph with your team's
-creative web application idea!
-
 #### Team Name
 
 Team 44
@@ -14,10 +10,10 @@ OddJobs
 
 #### Team Overview
 
-Evan Yan - evyan21
-Alec Xie - alecxiie
-Ishan Bhardwaj - ibhardwaj007
-Max Hannon - mhannon58
+Evan Yan - evyan21 <br>
+Alec Xie - alecxiie <br>
+Ishan Bhardwaj - ibhardwaj007 <br>
+Max Hannon - mhannon58 
 
 #### Innovative Idea
 
