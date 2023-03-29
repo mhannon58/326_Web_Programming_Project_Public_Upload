@@ -2,28 +2,29 @@
 
 ## Wireframe
 
+### Log in
+![Wireframe 1](/images/login-wireframe.png)
+
+### Sign up
+![Wireframe 2](/images/signup-wireframe.png)
+
+### Homepage
+![Wireframe 3](/images/home-wireframe.png)
+
 ### Search
-![Wireframe 1](search-wireframe.png)
+![Wireframe 4](/images/search-wireframe.png)
 
-Qui commodi beatae. Quaerat saepe tempora nisi labore ducimus corporis adipisci repellat nihil. Dolores est sed ratione consequatur est magnam cupiditate. Repellendus molestias qui doloribus. Deserunt quidem temporibus. Sunt hic laudantium vitae natus est.
+### Listing
+![Wireframe 5](/images/listing-wireframe.png)
 
+### Posting
+![Wireframe 6](/images/create-post-wireframe.png)
 
 ### Profile
-![Wireframe 2](profile-wireframe.png)
+![Wireframe 7](/images/profile-wireframe.png)
 
-Qui commodi beatae. Quaerat saepe tempora nisi labore ducimus corporis adipisci repellat nihil. Dolores est sed ratione consequatur est magnam cupiditate. Repellendus molestias qui doloribus. Deserunt quidem temporibus. Sunt hic laudantium vitae natus est.
-
-### Wireframe 3
-![Wireframe 3](wireframe-3.png)
-
-Qui commodi beatae. Quaerat saepe tempora nisi labore ducimus corporis adipisci repellat nihil. Dolores est sed ratione consequatur est magnam cupiditate. Repellendus molestias qui doloribus. Deserunt quidem temporibus. Sunt hic laudantium vitae natus est.
-
-### Wireframe 4
-![Wireframe 3](wireframe-3.png)
-
-Qui commodi beatae. Quaerat saepe tempora nisi labore ducimus corporis adipisci repellat nihil. Dolores est sed ratione consequatur est magnam cupiditate. Repellendus molestias qui doloribus. Deserunt quidem temporibus. Sunt hic laudantium vitae natus est.
-
-...
+### History
+![Wireframe 8](/images/history-wireframe.png)
 
 ## Stories
 
