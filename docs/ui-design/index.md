@@ -28,24 +28,22 @@
 
 ## Stories
 
-### Story 1
+### Story 1: Signing up or Logging into OddJobs
 ![Signing Up for OddJobs](images/Story1-1.png)
 
 The user will have navigated to the OddJobs homepage at this point. If the user wishes to search for jobs as a guest they can do so from this page. If the user wishes to log in or sign up, they can click the “Log In” button in the top right corner. After clicking this, they will be shown the “Log In” screen that will ask for a username and password. If the user wishes to sign up, they can hit the link below and instead be shown the “Sign Up” screen. After signing up, the user will then be directed to the search hub.
 
 
-### Story 2
+### Story 2: Navigating through the jobs list and selecting a job
+![Navigating job list](images/placeholder.png)
+The search page will have all relevant and available job results based on the user’s search criteria displayed as a list. Each element/row in the list will correspond to one job, and it will contain the most important information of the job: the title, the user who posted it, the deadline, a short snippet of the description, and the number of tokens awarded for completing the job. Clicking on a list element will redirect the user to a page that contains the above mentioned details, but now including the full description. There will also be an “Accept” button on the lower right corner of this page. If the user wishes to accept the job, they can click on the button and that area of the page will change to a message saying that the job is accepted.
 
-Blanditiis et esse ipsa soluta. Temporibus sunt possimus ut veritatis sint ut in quia eum. Omnis ea vel quae eligendi. Illo optio est doloremque autem. Sit ea dolorum architecto.
- 
-Fuga ea culpa eaque molestiae illo quod odio culpa. Et aut repellendus aut temporibus quae quia et. Quia consectetur quod est. Repellat animi amet quia velit.
- 
-Voluptatum accusantium dolores cumque sit accusamus. Eaque quia qui commodi rerum eos doloribus. Sint aliquam quae ut ut tempora pariatur qui.
 
 ### Story 3: Creating a post
 ![Creating a post](images/create-post-diagram.png)
 
 Creating a post is simple in OddJobs. To begin, click the “+” icon at the bottom-right corner of the results page. You’ll be redirected to another page where you can fill out a form that contains the following fields: title, description, amount of tokens, deadline and any relevant tags. Tokens are the currency of OddJobs and this is your offer to the person who accepts your job. You can click on the save button to save your post for later. You can post your job by clicking the post button.
+
 
 ## HTML & CSS Mockup
 
