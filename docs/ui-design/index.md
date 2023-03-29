@@ -3,13 +3,13 @@
 ## Wireframe
 
 ### Search
-![Wireframe 1](search_wireframe.png)
+![Wireframe 1](search-wireframe.png)
 
 Qui commodi beatae. Quaerat saepe tempora nisi labore ducimus corporis adipisci repellat nihil. Dolores est sed ratione consequatur est magnam cupiditate. Repellendus molestias qui doloribus. Deserunt quidem temporibus. Sunt hic laudantium vitae natus est.
 
 
 ### Profile
-![Wireframe 2](profile_wireframe.png)
+![Wireframe 2](profile-wireframe.png)
 
 Qui commodi beatae. Quaerat saepe tempora nisi labore ducimus corporis adipisci repellat nihil. Dolores est sed ratione consequatur est magnam cupiditate. Repellendus molestias qui doloribus. Deserunt quidem temporibus. Sunt hic laudantium vitae natus est.
 
