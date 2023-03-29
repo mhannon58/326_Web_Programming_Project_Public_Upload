@@ -40,7 +40,7 @@ Fuga ea culpa eaque molestiae illo quod odio culpa. Et aut repellendus aut tempo
 Voluptatum accusantium dolores cumque sit accusamus. Eaque quia qui commodi rerum eos doloribus. Sint aliquam quae ut ut tempora pariatur qui.
 
 ### Story 3: Creating a post
-![Creating a post](create-post-diagram.png)
+![Creating a post](images/create-post-diagram.png)
 
 Creating a post is simple in OddJobs. To begin, click the “+” icon at the bottom-right corner of the results page. You’ll be redirected to another page where you can fill out a form that contains the following fields: title, description, amount of tokens, deadline and any relevant tags. Tokens are the currency of OddJobs and this is your offer to the person who accepts your job. You can click on the save button to save your post for later. You can post your job by clicking the post button.
 
