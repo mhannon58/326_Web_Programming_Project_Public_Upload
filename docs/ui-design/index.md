@@ -3,28 +3,28 @@
 ## Wireframe
 
 ### Log in
-![Wireframe 1](/images/login-wireframe.png)
+![Wireframe 1](images/login-wireframe.png)
 
 ### Sign up
-![Wireframe 2](/images/signup-wireframe.png)
+![Wireframe 2](images/signup-wireframe.png)
 
 ### Homepage
-![Wireframe 3](/images/home-wireframe.png)
+![Wireframe 3](images/home-wireframe.png)
 
 ### Search
-![Wireframe 4](/images/search-wireframe.png)
+![Wireframe 4](images/search-wireframe.png)
 
 ### Listing
-![Wireframe 5](/images/listing-wireframe.png)
+![Wireframe 5](images/listing-wireframe.png)
 
 ### Posting
-![Wireframe 6](/images/create-post-wireframe.png)
+![Wireframe 6](images/create-post-wireframe.png)
 
 ### Profile
-![Wireframe 7](/images/profile-wireframe.png)
+![Wireframe 7](images/profile-wireframe.png)
 
 ### History
-![Wireframe 8](/images/history-wireframe.png)
+![Wireframe 8](images/history-wireframe.png)
 
 ## Stories
 
