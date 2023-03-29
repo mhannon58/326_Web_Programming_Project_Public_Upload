@@ -39,13 +39,10 @@ Fuga ea culpa eaque molestiae illo quod odio culpa. Et aut repellendus aut tempo
  
 Voluptatum accusantium dolores cumque sit accusamus. Eaque quia qui commodi rerum eos doloribus. Sint aliquam quae ut ut tempora pariatur qui.
 
-### Story 3
+### Story 3: Creating a post
+![Creating a post](create_post_diagram.png)
 
-Esse itaque quia est nam. Ut voluptate voluptatem tempora officia. Minus et repellendus ut aut. Aut sint sint distinctio perferendis voluptas. Aut libero qui reprehenderit. Quia dolor ratione dolore porro.
- 
-Est quod dolor natus. Nihil provident omnis. Exercitationem voluptate earum. Earum doloremque voluptates quia eos qui suscipit dicta.
- 
-Optio ea sit minima cum consequatur at ut incidunt. Ea voluptatem iure modi officiis. Distinctio eum nemo soluta nulla.
+Creating a post is simple in OddJobs. To begin, click the “+” icon at the bottom-right corner of the results page. You’ll be redirected to another page where you can fill out a form that contains the following fields: title, description, amount of tokens, deadline and any relevant tags. Tokens are the currency of OddJobs and this is your offer to the person who accepts your job. You can click on the save button to save your post for later. You can post your job by clicking the post button.
 
 ## HTML & CSS Mockup
 
