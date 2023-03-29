@@ -28,7 +28,7 @@ Qui commodi beatae. Quaerat saepe tempora nisi labore ducimus corporis adipisci 
 ## Stories
 
 ### Story 1
-![Signing Up for OddJobs](Strory1-1.png)
+![Signing Up for OddJobs](images/Strory1-1.png)
 
 The user will have navigated to the OddJobs homepage at this point. If the user wishes to search for jobs as a guest they can do so from this page. If the user wishes to log in or sign up, they can click the “Log In” button in the top right corner. After clicking this, they will be shown the “Log In” screen that will ask for a username and password. If the user wishes to sign up, they can hit the link below and instead be shown the “Sign Up” screen. After signing up, the user will then be directed to the search hub.
 
