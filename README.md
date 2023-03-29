@@ -1,60 +1,52 @@
 # Team 44 Project
 
-You are to start your team project here. Read the documentation for
-[Pr2: Creative Idea](https://umass-cs-326.github.io/docs/project/Idea/) and replace this paragraph with your team's
-creative web application idea!
+**Team Name**: Team 44
 
-Team Name
+**Application Name**: *OddJobs*
 
-Team 44
+#### Team Overview
 
-Application Name
+Evan Yan ([evyan21](https://github.com/evyan21)) <br>
+Alec Xie ([alecxiie](https://github.com/alecxiie)) <br>
+Ishan Bhardwaj ([ibhardwaj007](https://github.com/ibhardwaj007)) <br>
+Max Hannon ([mhannon58](https://github.com/mhannon58)) 
 
-OddJobs
+## Innovative Idea
 
-Team Overview
+<p> The idea of our application is a task posting forum for the UMass campus. This application will have users create profiles with which they can both post and accept various small tasks on campus. Whether it's for moving out of a residence hall, finding tutors, bringing materials to a location, or saving a seat for someone at the dining hall, no job is too strange. The web app will be similar to the current apps Fiverr and Craigslist that let people post and accept job opportunities. The difference is that our application will be centered around UMass as a campus. </p>
 
-Evan Yan - evyan21
-Alec Xie - alecxiie
-Ishan Bhardwaj - ibhardwaj007
-Max Hannon - mhannon58
+<p> User profiles will have ratings associated with them about how well each party was to work with: both the employer and the employee. An algorithm can be used to give priority to better rated performers for both the order in which jobs appear as well as priority for accepting a job. The main job listings page can have categories based on the type of job and the reward that is being given. </p>
 
-Innovative Idea
+## Data 
 
-The idea of our application is a task posting forum for the UMass campus. This application will have users create profiles with which they can both post and accept various small tasks on campus. Whether it's for moving out of a residence hall, finding tutors, bringing materials to a location, or saving a seat for someone at the dining hall, no job is too strange. The web app will be similar to the current apps Fiverr and Craigslist that let people post and accept job opportunities. The difference is that our application will be centered around UMass as a campus.
+- **User Data** - The app will need to store user login information (email addresses, passwords, etc).
 
-User profiles will have ratings associated with them about how well each party was to work with: both the employer and the employee. An algorithm can be used to give priority to better rated performers for both the order in which jobs appear as well as priority for accepting a job. The main job listings page can have categories based on the type of job and the reward that is being given.
+- **Tasks** - A task is a post made by a user with a description about anything they want completed and when they want it done by. It will have an associated token amount that they will pay to whoever accepts and completes the task. The app will need to store task descriptions, deadlines, the profile of the associated requester and the number of tokens offered.
 
-Data 
+- **Label** - Labels/Tags are categories that tasks come under. They can be attached to tasks and will allow users to filter tasks that are associated with the given label.
 
-User Data - The app will need to store user login information (email addresses, passwords, etc).
+- **Tokens** - Tokens are the transaction currency used on this app. Each task will have a token amount that will be paid for completing that task. Tokens can affect your status as a requester and acceptor. The app will need to store token transaction history (number of tokens paid or received by the user for all their tasks).
 
-Tasks - A task is a post made by a user with a description about anything they want completed and when they want it done by. It will have an associated token amount that they will pay to whoever accepts and completes the task. The app will need to store task descriptions, deadlines, the profile of the associated requester and the number of tokens offered.
+- **Reviews** - Users can give reviews for tasks they worked on and their compensation, as well as how well an acceptor performed a task. This can affect the status of requesters and acceptors.
 
-Label - Labels/Tags are categories that tasks come under. They can be attached to tasks and will allow users to filter tasks that are associated with the given label.
+**Search history** - The web app can maintain a limited history of tasks that a user viewed.
 
-Tokens - Tokens are the transaction currency used on this app. Each task will have a token amount that will be paid for completing that task. Tokens can affect your status as a requester and acceptor. The app will need to store token transaction history (number of tokens paid or received by the user for all their tasks).
+## Functionality
 
-Reviews - Users can give reviews for tasks they worked on and their compensation, as well as how well an acceptor performed a task. This can affect the status of requesters and acceptors.
+- **Visiting and customizing profiles/pages** - Users will be able to visit other users’ profiles by clicking on their profile pictures. There will also be a profile icon in the corner of the page for users to modify profile attributes and website settings. Information about the user including token transaction history, task acceptance history, and reputation in the form of tokens from completing requests will be displayed. Here, users can also view their search history.
 
-Search history - The web app can maintain a limited history of tasks that a user viewed.
+- **Creating a post** - Users will be able to create posts on the home page.
 
-Functionality
+- **Accept offers/exchange tokens** - Users will be able to accept tasks and receive tokens for their completion. Users that put up the listing will pay the users that accept that listing.
 
-Visiting and customizing profiles/pages - Users will be able to visit other users’ profiles by clicking on their profile pictures. There will also be a profile icon in the corner of the page for users to modify profile attributes and website settings. Information about the user including token transaction history, task acceptance history, and reputation in the form of tokens from completing requests will be displayed. Here, users can also view their search history.
+- **Browsing feature** - Users will be able to browse available posts in their home feed and also use the search bar to specify available listings. Filters will be available based on poster labels. By default, a list of jobs will be displayed on the homepage.
 
-Creating a post - Users will able to create posts on the home page
+- **Geolocation** - Another method for users to browse posts or local requests (undecided).
 
-Accept offers/exchange tokens - Users will be able to accept tasks and receive tokens for their completion. Users that put up the listing will pay the users that accept that listing.
+- **User authentication** - Users will use their school email to authenticate their status as a UMass student, thus ensuring a community of students on the website (undecided).
 
-Browsing feature - Users will be able to browse available posts in their home feed and also use the search bar to specify available listings. Filters will be available based on poster labels. By default, a list of jobs will be displayed on the homepage.
+- **Reviewing profiles/commenting** - Users can leave comments that factor into an individual’s reputation.
 
-Geolocation - Another method for users to browse posts or local requests (undecided)
+## License
 
-User authentication (?) with school email - Users will use their school email to authenticate their status as a UMass student, thus ensuring a community of students on the website.
-
-Reviewing profiles/commenting - Users can leave comments that factor into an individual’s reputation
-
-License includes the license you choose for your project. You must choose a license from the Open Source Initiative and include a link to the license in your README.md file. You must also include a copy of the license in your repository (LICENSE). For example, if you choose the MIT license, you would include the following in your README.md file: and you would include a copy of the license in your repository.
-
-[MIT License] (https://opensource.org/licenses/MIT) 
+[MIT License](https://opensource.org/licenses/MIT) 
