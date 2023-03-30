@@ -50,7 +50,7 @@ Every user that creates an account on OddJobs will have a profile page. Each pro
 
 ### Story 5: Going to history page
 ![Creating a post](images/story-5.png)<br>
-This page displays a history list of jobs that the user has done (the user can decide whether they want to post this on their history page), and a list of the jobs they have posted. Both of 
+This page displays a history list of jobs that the user has done (the user can decide whether they want to post this on their history page), and a list of the jobs they have posted. Both of these lists are similar to the list on the search page in that each element/row (an element represents a job) can be clicked on to redirect to a page that gives the full description of the job.
 
 
 ## HTML & CSS Mockup
