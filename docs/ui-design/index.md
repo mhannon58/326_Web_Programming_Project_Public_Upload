@@ -41,8 +41,17 @@ The search page will have all relevant and available job results based on the us
 
 ### Story 3: Creating a post
 ![Creating a post](images/story-3.png)
-
 Creating a post is simple in OddJobs. To begin, click the “+” icon at the bottom-right corner of the results page. You’ll be redirected to another page where you can fill out a form that contains the following fields: title, description, amount of tokens, deadline and any relevant tags. Tokens are the currency of OddJobs and this is your offer to the person who accepts your job. You can click on the save button to save your post for later. You can post your job by clicking the post button.
+
+
+### Story 4: Going to profile page
+![Creating a post](images/story-4.png)
+Every user that creates an account on OddJobs will have a profile page. Each profile page will have a profile picture beneath which is the name of the user, a bio (optional text a user can include to talk about themselves and their needs), the number of tokens accumulated so far, and a link named “Job History”. This link will redirect to a page that displays the user’s history of completed jobs. On the right side of all this information, there will be a list of jobs displayed similar to the list on the search page. This list contains the jobs the user has actively taken on. This list will contain only a few jobs. If the user has more active jobs, one can expand this list to scroll through the whole active job list.
+
+
+### Story 5: Going to history page
+![Creating a post](images/story-5.png)
+This page displays a history list of jobs that the user has done (the user can decide whether they want to post this on their history page), and a list of the jobs they have posted. Both of 
 
 
 ## HTML & CSS Mockup
