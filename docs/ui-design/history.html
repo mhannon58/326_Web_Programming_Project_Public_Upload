@@ -6,6 +6,10 @@
     <title>History</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <style>
+      iframe {
+        margin-bottom: -75px; /* Negative to counteract <iframe> */
+      }
+
       .list-group-item {
         width: 65%; /* 100% = 516 (not px) */
         height: 100px;
@@ -23,8 +27,8 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 
-    <!-- Puts spacing beneath for some reason -->
-    <!-- <iframe src="../../index.html" width="100%"></iframe> -->
+    <!-- Puts spacing beneath -->
+    <iframe src="../../index.html" width="100%"></iframe>
 
     <div class="container">
       <h1>Job History</h1><br>
@@ -35,7 +39,7 @@
         <li class="list-group-item">Job 2</li><br>
         <li class="list-group-item">Job 3</li><br>
       </ul>
-      <!-- Need to figure out how to center -->
+      <!-- Need to center -->
       <button class="btn btn-secondary btn-expand">Expand...</button><br>
 
       <h2>Accepted Jobs</h2>
@@ -44,7 +48,7 @@
         <li class="list-group-item">Job 2</li><br>
         <li class="list-group-item">Job 3</li><br>
       </ul>
-      <!-- Need to figure out how to center -->
+      <!-- Need to center -->
       <button class="btn btn-secondary btn-expand">Expand...</button><br>
     </div>
   </body>
