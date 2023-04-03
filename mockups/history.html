@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <style>
+      iframe {
+        margin-bottom: -65px; /* Negative to counteract <iframe> */
+      }
+
+      .list-group-item {
+        width: 65%; /* 100% = 516 (not px) */
+        height: 100px;
+        border-radius: 5px;
+        border: 0.75px solid black;
+        margin-bottom: -15px; /* Negative to counteract <br> */
+      }
+
+      .btn-expand {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+    <!-- Puts spacing beneath -->
+    <iframe src="navbar.html" width="100%"></iframe>
+
+    <div class="container">
+      <h1>Job History</h1><br>
+
+      <h2>Posted Jobs</h2>
+      <ul class="list-group">
+        <li class="list-group-item">Job 1</li><br>
+        <li class="list-group-item">Job 2</li><br>
+        <li class="list-group-item">Job 3</li><br>
+      </ul>
+      <!-- Need to center -->
+      <button class="btn btn-secondary btn-expand">Expand...</button><br>
+
+      <h2>Accepted Jobs</h2>
+      <ul class="list-group">
+        <li class="list-group-item">Job 1</li><br>
+        <li class="list-group-item">Job 2</li><br>
+        <li class="list-group-item">Job 3</li><br>
+      </ul>
+      <!-- Need to center -->
+      <button class="btn btn-secondary btn-expand">Expand...</button><br>
+    </div>
+  </body>
+</html>
