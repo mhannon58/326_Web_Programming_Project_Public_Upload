@@ -55,18 +55,12 @@ This page displays a history list of jobs that the user has done (the user can d
 
 ## HTML & CSS Mockup
 
-Reiciendis velit dolorum voluptas earum. Rerum nobis accusantium laudantium minima incidunt. Magnam aut minus minus. Cumque unde voluptatibus soluta molestias perspiciatis aperiam accusantium laborum quo.
+- [Screenshots](/docs/milestone1.md)
+- [HTML Mockups](/mockups)
 
-![HTML & CSS Mockup 1](mockup-1.png)
-
-Natus est molestias est et autem non in. Laudantium consequatur facilis perferendis. Saepe similique sapiente rem ut. Laudantium natus voluptas delectus molestiae ab omnis quidem. Maxime cumque porro ea deleniti incidunt nihil cupiditate sunt. Nihil eaque porro nemo veritatis.
-
-![HTML & CSS Mockup 2](mockup-2.png)
-
-Ipsam architecto nulla ut dolor dolor sit mollitia deleniti minus. Velit quia iste.
 
 ## References
 
-- [Link 1](https://example.com)
-- [Link 2](https://example.com)
-- [Link 3](https://example.com)
+- [Balsamiq Wireframes](https://balsamiq.com/wireframes/)
+- [Bootstrap](https://getbootstrap.com/)
+- [TutorialRepublic Bootstrap Tutorial](https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/)
