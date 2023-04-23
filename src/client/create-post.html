@@ -7,11 +7,11 @@
 </head>
 
 <body>
-  <iframe src="/mockups/navbar.html" width="100%"></iframe>
+  <iframe src="navbar.html" width="100%"></iframe>
   <div class="container">
     <div class="row mt-3">
       <div class="col-md-4">
-        <input class="form-control form-control-lg" type="text" placeholder="Title">
+        <input id="title" class="form-control form-control-lg" type="text" placeholder="Title">
       </div>
     </div>
     <div class="row mt-3">
@@ -20,16 +20,13 @@
       </div>
       <div class="col-md-2">
         <div class="row">
-          <button style="height:50px; font-size: 20;" class="btn btn-primary btn-md mt-3" type="submit">Post</button>
-        </div>
-        <div class="row">
-          <button style="height:50px;font-size: 20;" class="btn btn-primary btn-md mt-3" type="submit">Save</button>
+          <button id="post" style="height:50px; font-size: 20;" class="btn btn-primary btn-md mt-3" type="submit">Post</button>
         </div>
       </div>
     </div>
       <div class="row mt-3">
         <div class="col-md-2">
-          <label for="tags">Tags</label>
+          <label for="tags">Tags (optional)</label>
           <select id="tags" class="form-control" multiple data-mdb-placeholder="Select tags" >
             <option value="1">Homework</option>
             <option value="2">Moving</option>
