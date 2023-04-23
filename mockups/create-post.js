@@ -1,12 +1,19 @@
-
-console.log("intro")
 const postdb = new PouchDB('Posts');
 
 postdb.info().then(function (info) {
     console.log(info);
 })
 
-//createPost("post3", "example", "This is an example", ["example"], 6)
+const title_box = document.getElementById("title")
+const description = document.getElementById("description")
+
+const save_button = document.getElementById("save")
+
+save_button.addEventListener('click', ()=>{
+    createPost("post13", title_box.value, description.value, ["hello"], 6)
+})
+
+readPost("post13")
 
 async function createPost(id, title, description, tags, tokens){
 
