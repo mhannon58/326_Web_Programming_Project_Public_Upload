@@ -6,29 +6,31 @@ postdb.info().then(function (info) {
 
 const title_box = document.getElementById("title")
 const description = document.getElementById("description")
-
+const tags = document.getElementById("tags")
+const tokens = document.getElementById("tokens")
+const post_button = document.getElementById("post")
 const save_button = document.getElementById("save")
 
 save_button.addEventListener('click', ()=>{
-    createPost("post13", title_box.value, description.value, ["hello"], 6)
+    createPost("post13", title_box.value, description.value, ["hello"],6 )
 })
 
 readPost("post13")
 
 async function createPost(id, title, description, tags, tokens){
 
-    let post = {Title: title,
-         Description: description, 
-         Tags: tags, 
-         Tokens: tokens,
-        _id: id}
+  let post = {Title: title,
+        Description: description, 
+        Tags: tags, 
+        Tokens: tokens,
+      _id: id}
 
-    try {
-        const response = await postdb.put(post);
-        console.log('Document created: ', response);
-    } catch(err) {
-        console.error('Failed to create document: ', err);
-    }
+  try {
+      const response = await postdb.put(post);
+      console.log('Document created: ', response);
+  } catch(err) {
+      console.error('Failed to create document: ', err);
+  }
     
 }
 
