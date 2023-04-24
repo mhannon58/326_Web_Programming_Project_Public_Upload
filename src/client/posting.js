@@ -5,7 +5,7 @@ const tokenNumber = document.getElementById('tokens');
 const deadline = document.getElementById('deadline');
 const postTags = document.getElementById('tags');
 
-postButton.addEventListener('click', ()=>{
+postButton.addEventListener('click', () => {
     const title = postTitle.value;
     const desc = postContent.value;
     const tokens = tokenNumber.value;
@@ -39,7 +39,7 @@ postButton.addEventListener('click', ()=>{
         alert(`${title} ${desc} ${tokens} ${date}`);
         alert(tags);
 
-        
+
     }
 });
 
