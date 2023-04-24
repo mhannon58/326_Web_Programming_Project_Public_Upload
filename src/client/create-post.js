@@ -156,7 +156,7 @@ postButton.addEventListener('click', () => {
         alert(`${title} ${desc} ${tokens} ${date}`);
         alert(tags);
 
-        getNextId().them(id => {
+        getNextId().then(id => {
             const id_string = post + id.toString();
 
             console.log("The id we are about to post is", id);
