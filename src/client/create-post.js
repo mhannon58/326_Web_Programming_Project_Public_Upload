@@ -20,6 +20,8 @@ function reset_general() {
 //reset_posts()
 //reset_general()
 
+
+
 async function _init_(){
     try{
         const doc = await generaldb.get("posting_count")
@@ -28,6 +30,7 @@ async function _init_(){
         await generaldb.put({_id:"posting_count", count: 0})
     }
 }
+
 async function getNextId(){
 
     let doc = "placeholder"
@@ -59,6 +62,7 @@ generaldb.info().then(function (info) {
 })
 
 
+
 async function createPost(id, title, description, tags, tokens, date){
 
     let post = {Title: title,
@@ -81,13 +85,14 @@ async function readPost(id){
     {
     const doc = await postdb.get(id);
     console.log('Document retrieved: ', doc);
-    return doc
+    return await doc
     } 
     catch(err) 
     {
     console.error('Failed to retrieve document: ', err);
     }
 }
+
 async function updatePost(id, data){
 try 
 {
@@ -113,6 +118,18 @@ async function deletePost(id){
     console.error('Failed to delete document: ', err);
     }
 }
+
+async function getAllPosts(){
+    try{
+        const docs = await postdb.allDocs();
+        console.log(docs)
+        return docs
+    }catch(err){
+        console.log("an error occurred")
+    }
+}
+
+getAllPosts();
 
 
 const postTitle = document.getElementById('title');
@@ -156,11 +173,14 @@ postButton.addEventListener('click', () => {
         alert(`${title} ${desc} ${tokens} ${date}`);
         alert(tags);
 
-        const id = await getNextId()
-        const id_string = post + id.toString()
+      
+        getNextId().then(id => {
+            const id_string = "post" + id.toString();
 
-        console.log("The id we are about to post is", id)
-        createPost(id_string, title, desc, tags, tokens, date) 
+            console.log("The id we are about to post is", id);
+            createPost(id_string, title, desc, tags, tokens, date) ;
+        });
+        
     }
 });
 
