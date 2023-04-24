@@ -8,7 +8,6 @@
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="search.css" rel="stylesheet" type="text/css" />
-
 </head>
 
 <body>
@@ -21,8 +20,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <form class="d-flex mx-auto">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input type="button" id="search-btn" class="btn btn-outline-success">Search</input>
                 </form>
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -67,6 +66,7 @@
         </div>
     </nav>
 
+    <div id="results">
     <div class="container border py-3 my-3">
         <div class="row">
             <div class="col-8">
@@ -84,11 +84,15 @@
     </div>
     <!--Add more listings here-->
 
+    </div>
+
     <br>
     <p><a href="/mockups/create-post.html" target="_blank" class="btn btn-success fixed-bottom py-3">Create listing</a></p>
     <br>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/bootstrap/js/bootstrap.bundle.js"></script>
 </body>
+
+<script src="results.js"></script>
 
 </html>
