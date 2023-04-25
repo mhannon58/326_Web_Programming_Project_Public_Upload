@@ -84,7 +84,7 @@ function displayListings(posts, container){
 }
 
 
-displayListings(posts, resultsDiv); // display the first 10 posts by default
+displayListings(posts, resultsDiv); // display mockdata
 
 
 // Update listings on search
@@ -101,7 +101,7 @@ searchButton.addEventListener('click', ()=>{
 });
 
 // Filter listings based on selected tags
-
+// TODO
 
 // Sort listings
 Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> {
