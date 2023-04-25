@@ -56,9 +56,8 @@ function displayListings(posts, container){
 
         const col2 = document.createElement('div');
         col2.classList.add('col-4','text-end');
-
         const view = document.createElement('button');
-        view.setAttribute('onclick', 'null'); // button has no path
+        view.setAttribute('onClick', 'window.location.href="./listing.html"'); // button has no specified path
         view.innerText = 'View';
         view.classList.add('btn', 'btn-primary');
         view.setAttribute('type', 'button');
