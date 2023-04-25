@@ -47,6 +47,7 @@ async function createReview(id, title, description) {
         console.error('Failed to create document: ', err);
     }
 } 
+
 async function readReview(id) {
     try {
         const doc = await reviewdb.get(id);
@@ -57,7 +58,7 @@ async function readReview(id) {
     }
 }
 
-async function updateReview(id, data){
+async function updateReview(id, data) {
     try {
         const doc = await reviewdb.get(id);
         Object.assign(doc, data);
@@ -67,7 +68,8 @@ async function updateReview(id, data){
         console.error('Failed to update document: ', err);
     }
 }
-async function deleteReview(id){
+
+async function deleteReview(id) {
     try {
         const doc = await reviewdb.get(id);
         const response = await reviewdb.remove(doc);
@@ -77,13 +79,13 @@ async function deleteReview(id){
     }
 }
 
-async function getAllReviews(){
+async function getAllReviews() {
     try {
         const docs = await reviewdb.allDocs({ include_docs: true });
         console.log(docs);
         return docs;
     } catch(err) {
-        console.log("an error occurred");
+        console.log("An error occurred.");
     }
 }
 
