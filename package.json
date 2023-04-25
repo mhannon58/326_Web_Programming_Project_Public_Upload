@@ -1,0 +1,25 @@
+{
+  "name": "326-project-repo-team-44",
+  "version": "1.0.0",
+  "description": "**Team Name**: Team 44",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umass-cs-326-s23/326-project-repo-team-44.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umass-cs-326-s23/326-project-repo-team-44/issues"
+  },
+  "homepage": "https://github.com/umass-cs-326-s23/326-project-repo-team-44#readme",
+  "dependencies": {
+    "pouchdb": "^8.0.1"
+  }
+}
