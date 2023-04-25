@@ -19,7 +19,7 @@ async function loadPosts() {
 }
 
 async function loadProfiles() {
-  const db = new PouchDB('profiles');
+  const db = new PouchDB('Profiles');
   const response = await fetch('/data/mock_profile.json');
   const profiles = await response.json();
 
