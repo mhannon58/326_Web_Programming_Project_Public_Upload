@@ -1,25 +1,6 @@
 let postdb = new PouchDB('Posts')
 let generaldb = new PouchDB('General')
-
-postdb.info().then(function (info) {
-    console.log(info);
-})
-
-function reset_posts() {
-    postdb.destroy().then(function() {
-      postdb = new PouchDB('Posts');
-    });
-};
-
-function reset_general() {
-    generaldb.destroy().then(function() {
-      generaldb = new PouchDB('General');
-    });
-};
-
-//reset_posts()
-//reset_general()
-
+let reviewdb = new PouchDB('Reviews')
 
 
 async function _init_(){
@@ -57,33 +38,24 @@ async function getNextId(){
 
 _init_()
 
-generaldb.info().then(function (info) {
-    console.log(info);
-})
-
-
-
-async function createPost(id, title, description, tags, tokens, date){
+async function createReview(id, title, description){
 
     let post = {Title: title,
           Description: description, 
-          Tags: tags, 
-          Tokens: tokens,
-          Date: date,
         _id: id}
   
     try {
-        const response = await postdb.put(post);
+        const response = await reviewdb.put(post);
         console.log('Document created: ', response);
     } catch(err) {
         console.error('Failed to create document: ', err);
     }
       
   } 
-async function readPost(id){
+async function readReview(id){
     try 
     {
-    const doc = await postdb.get(id);
+    const doc = await reviewdb.get(id);
     console.log('Document retrieved: ', doc);
     return await doc
     } 
@@ -93,12 +65,12 @@ async function readPost(id){
     }
 }
 
-async function updatePost(id, data){
+async function updateReview(id, data){
 try 
 {
-    const doc = await db.get(id);
+    const doc = await reviewdb.get(id);
     Object.assign(doc, data);
-    const response = await db.put(doc);
+    const response = await reviewdb.put(doc);
     console.log('Document updated: ', response);
 } 
 catch(err) 
@@ -106,11 +78,11 @@ catch(err)
     console.error('Failed to update document: ', err);
 }
 }
-async function deletePost(id){
+async function deleteReview(id){
     try 
     {
-    const doc = await postdb.get(id);
-    const response = await postdb.remove(doc);
+    const doc = await reviewdb.get(id);
+    const response = await reviewdb.remove(doc);
     console.log('Document deleted: ', response);
     } 
     catch(err) 
@@ -119,9 +91,9 @@ async function deletePost(id){
     }
 }
 
-async function getAllPosts(){
+async function getAllReviews(){
     try{
-        const docs = await postdb.allDocs();
+        const docs = await reviewdb.allDocs();
         console.log(docs)
         return docs
     }catch(err){
@@ -129,22 +101,53 @@ async function getAllPosts(){
     }
 }
 
-getAllPosts();
+function populateReview(element){
+    var firstDiv = document.createElement("div");
+    firstDiv.classList.add("card")
+    firstDiv.classList.add("mb-4")
 
+    var cardBody = document.createElement("div");
+    cardBody.classList.add("card-body")
+
+    var firstRow = document.createElement("div");
+    firstRow.classList.add("row")
+    firstRow.classList.add("mb-4")
+
+
+    var secondDiv = document.createElement("div");
+    secondDiv.classList.add("col-sm-10")
+
+    var head3 = document.createElement("h3")
+    head3.classList.add("mb-0")
+
+    var title = document.createElement("a")
+    title.innerHTML = "<a> This is an example </a>"
+
+    var desc = document.createElement("p")
+    desc.classList.add("mb-0")
+    desc.innerHTML = "<p> This is a place holderThis is a place holderThis is a place holderThis is a place holderThis is a place holderThis is a place holderThis is a place holder </p>"
+
+    firstDiv.appendChild(cardBody)
+    cardBody.appendChild(firstRow)
+    firstRow.appendChild(secondDiv)
+    secondDiv.appendChild(head3)
+    head3.appendChild(title)
+
+    element.appendChild(firstDiv)
+    cardBody.appendChild(desc)
+}
 
 const postTitle = document.getElementById('title');
 const postContent = document.getElementById('description');
-const postButton = document.getElementById('post');
-const tokenNumber = document.getElementById('tokens');
-const deadline = document.getElementById('deadline');
-const postTags = document.getElementById('tags');
+const postButton = document.getElementById('post')
+const reviewLoc = document.getElementById('reviews')
+
+console.log(reviewLoc)
+populateReview(reviewLoc)
 
 postButton.addEventListener('click', () => {
     const title = postTitle.value;
     const desc = postContent.value;
-    const tokens = tokenNumber.value;
-    const date = deadline.value;
-    const tags = [...postTags.options].filter(option => option.selected).map(option => option.value);
 
     // check for missing fields
     if (!title) {
@@ -153,32 +156,19 @@ postButton.addEventListener('click', () => {
     else if (!desc) {
         alert('Description required.');
     }
-    else if (!tokens) {
-        alert('Number of tokens required.');
-    }
-    else if (tokens < 0) {
-        alert('Tokens must be non-negative.');
-    }
-    else if (!date) {
-        alert('Deadline required.');
-    }
-    // TODO: current date should also be a valid date
-    // right now, today is marked as invalid date
-    // fix this comparison
-    else if (new Date(date) < new Date()) {
-        alert('Deadline must be in the future.');
-    }
     else {
         // create post here
-        alert(`${title} ${desc} ${tokens} ${date}`);
-        alert(tags);      
+        alert(`${title} ${desc}`);
+      
         getNextId().then(id => {
-            const id_string = "post" + id.toString();
-            console.log("The id we are about to post is", id);
-            createPost(id_string, title, desc, tags, tokens, date) ;
-        });
+            const id_string = "review" + id.toString();
 
+            console.log("The id we are about to post is", id);
+            createReview(id_string, title, desc);
+        });
+        
     }
 });
 
 // TODO: add save button functionality
+
