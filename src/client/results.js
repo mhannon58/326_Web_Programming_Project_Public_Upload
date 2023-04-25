@@ -17,7 +17,8 @@ let posts = [{"post_id":1,"post_title":"sodales sed tincidunt eu felis fusce pos
 
 const searchText = document.getElementById('search');
 const searchButton = document.getElementById('search-btn');
-//const tags = document.getElementById('tags');
+const tagSearch = document.getElementById('tag-search');
+const tags = document.getElementById('tag');
 const sortOptions = document.getElementsByClassName('sort');
 
 const resultsDiv = document.getElementById('results');
@@ -106,11 +107,10 @@ searchButton.addEventListener('click', ()=>{
 
 // Filter listings based on selected tags
 
-
 // Sort listings
-    
 Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> {
-    document.getElementsByClassName('active')[1].classList.remove('active');
+    let active = document.getElementsByClassName('active');
+    if(active.length > 1){ active[1].classList.remove('active'); }
     option.classList.add('active');
     const field = option.innerText;
     let listings = posts;
