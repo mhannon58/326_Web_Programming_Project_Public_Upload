@@ -4,6 +4,9 @@ let generaldb = new PouchDB('General')
 let reviewdb = new PouchDB('Reviews')
 
 import { Crud } from './pouchdb.js';
+import { initNavbar } from "./navbar.js";
+
+initNavbar();
 
 const signupObj = new Crud('signup_db')
 
