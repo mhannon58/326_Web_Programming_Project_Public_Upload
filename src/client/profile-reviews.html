@@ -9,8 +9,8 @@
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="profile.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
-    <script type= "module" src="list-reviews.js" defer></script>
-    <script type="module" src="profile.js" defer></script>
+    <script type="module" src="list-reviews.js" defer></script>
+    <script type="module" src="profile-reviews.js" defer></script>
 </head>
 
 <body>
@@ -26,8 +26,12 @@
             <p id="email" class="text-muted mb-1"></p>
             <p class="text-muted mb-4">Amherst, MA</p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-outline-primary ms-1">Reviews</button>
-              <button type="button" class="btn btn-outline-primary ms-1">History</button>
+              <a href = "profile.html">
+                <button type="button" class="btn btn-outline-primary ms-1">Profile</button>
+              </a>
+              <a href = "history.html">
+                <button type="button" class="btn btn-outline-primary ms-1">History</button>
+              </a>
             </div>
           </div>
         </div>
