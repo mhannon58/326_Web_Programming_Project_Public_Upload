@@ -1,8 +1,8 @@
 let postdb = new PouchDB('Posts')
 let generaldb = new PouchDB('General')
 
-//reset_posts()
-//reset_general()
+reset_posts()
+reset_general()
 
 async function loadPosts() {
     const response = await fetch('/data/mock_posts.json');
