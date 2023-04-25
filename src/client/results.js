@@ -36,7 +36,8 @@ function displayListings(posts, container){
 
         const description = document.createElement('p');
         description.setAttribute('id', 'description');
-        description.innerText = `${post.post_description.slice(0,251)} ...`;
+        let text = post.post_description.length > 250 ? post.post_description.slice(0,251)+ "..." : post.post_description;
+        description.innerText = text;
 
         const tags = document.createElement('p');
         tags.setAttribute('id', 'tags');
@@ -84,7 +85,7 @@ function displayListings(posts, container){
 }
 
 
-displayListings(posts, resultsDiv); // display the first 10 posts by default
+displayListings(posts, resultsDiv); // display mockdata
 
 
 // Update listings on search
@@ -101,7 +102,7 @@ searchButton.addEventListener('click', ()=>{
 });
 
 // Filter listings based on selected tags
-
+// TODO
 
 // Sort listings
 Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> {
