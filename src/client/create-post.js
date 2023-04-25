@@ -144,7 +144,7 @@ postButton.addEventListener('click', () => {
     const desc = postContent.value;
     const tokens = tokenNumber.value;
     const date = deadline.value;
-    const tags = [...postTags.options].filter(option => option.selected).map(option => option.value);
+    const tags = [...postTags.options].filter(option => option.selected).map(option => option.textContent);
 
     // check for missing fields
     if (!title) {
