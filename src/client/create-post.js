@@ -1,4 +1,5 @@
 import { getNextId, createPost } from "./postcrud.js";
+import { Crud } from './pouchdb.js';
 
 const postTitle = document.getElementById('title');
 const postContent = document.getElementById('description');
@@ -7,7 +8,9 @@ const tokenNumber = document.getElementById('tokens');
 const deadline = document.getElementById('deadline');
 const postTags = document.getElementById('tags');
 
-postButton.addEventListener('click', () => {
+const signupObj = new Crud('signup_db')
+
+postButton.addEventListener('click', async () => {
     const title = postTitle.value;
     const desc = postContent.value;
     const tokens = tokenNumber.value;
@@ -41,10 +44,18 @@ postButton.addEventListener('click', () => {
         // create post here
         alert(`${title} ${desc} ${tokens} ${date}`);
         alert(tags);      
-        getNextId().then(id => {
+        getNextId().then(async (id) => {
             const id_string = id.toString();
+            
+            // updates list of post IDs
+            // have to use arbitrary username for now: "johndoe123"
+            let userData = await signupObj.readDoc("johndoe123");
+            userData.createdPosts.push(id_string);
+            signupObj.updateDoc("johndoe123", { createdPosts: userData.createdPosts })
+            userData = await signupObj.readDoc("johndoe123");
+
             console.log("The id we are about to post is", id);
-            createPost(id_string, title, desc, tags, tokens, date) ;
+            createPost(id_string, title, desc, tags, tokens, date);
         });
 
     }

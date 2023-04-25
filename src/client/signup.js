@@ -15,7 +15,6 @@ registerButton.addEventListener("click", async function(event) {
       email: email,
       password: password,
       createdPosts: [],
-      acceptedPosts: [],
       reviews: []
   }
 
