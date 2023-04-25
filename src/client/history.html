@@ -1,170 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>History</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
-    <script type="module" src="./history.js"></script>
-    <style>
-      iframe {
-        margin-bottom: -75px; /* Negative to counteract <iframe> */
-      }
 
-      .list-group-item {
-        width: 65%; /* 100% = 516 (not px) */
-        height: 90px;
-        border-radius: 5px;
-        border: 0.75px solid black;
-        margin-bottom: -15px; /* Negative to counteract <br> */
-      }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OddJobs - History</title>
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="create-post.css" rel="stylesheet" type="text/css" />
+  <link href="history.css" rel="stylesheet" type="text/css" />
+  <script src="//cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
+  <script type="module" src="./history.js" defer></script>
+</head>
 
-      .expand {
-        display: block;
-        margin-left: 370px; /* To be changed */
-      }
-    </style>
-  </head>
-
-  <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-
-    <!-- Puts spacing beneath -->
-    <iframe src="navbar.html" width="100%"></iframe>
-
-    <div class="container">
-      <h1>Job History</h1><br>
-
-      <h2>Posted Jobs</h2>
-      <ul class="list-group">
-        <li class="list-group-item">
+<body>
+  <iframe src="navbar.html" width="100%"></iframe>
+  <div class="container">
+    <div class="col-lg-8">
+      <h1>Posted Job History</h1>
+      <div class="card mb-4">
+        <div class="card-body">
           <div class="row">
-            <div class="col-sm-8">
-              <span class="job-title">Need tutoring...</span>
+            <div class="col-sm-10">
+              <h3 class="mb-0">
+                <a href="/mockups/listing.html">
+                  Help me with my homework
+                </a>
+              </h3>
             </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Deadline: 04/13/2023</strong></span>
-            </div>
-            <div class="col-sm-12">
-              <span class="username">@John Doe</span>
-            </div>
-            <div class="col-sm-8">
-              <span class="description"><strong>Description: </strong>I need some help with...</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Tokens: 20</strong></span>
+            <div class="col-sm-2">
+              <p class="text-muted mb-0 float-right">1/1/2023</p>
             </div>
           </div>
-        </li><br>
-
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-sm-8">
-              <span class="job-title">Help needed to move packages</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Deadline: 05/25/2023</strong></span>
-            </div>
-            <div class="col-sm-12">
-              <span class="username">@John Doe</span>
-            </div>
-            <div class="col-sm-8">
-              <span class="description"><strong>Description: </strong>I need some help with...</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Tokens: 40</strong></span>
-            </div>
+          <div class="row mb-4">
+              <div class="col-1">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 20px;">
+              </div>
+              <div class="col-9">
+                <p class="mb-0">John Doe</p>
+              </div>
+              <div class="col-2">
+                <p class="mb-0">1 token</p>
+              </div>
           </div>
-        </li><br>
-
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-sm-8">
-              <span class="job-title">Lost my dog!</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Deadline: 04/05/2023</strong></span>
-            </div>
-            <div class="col-sm-12">
-              <span class="username">@John Doe</span>
-            </div>
-            <div class="col-sm-8">
-              <span class="description"><strong>Description: </strong>I need some help with...</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Tokens: 35</strong></span>
-            </div>
-          </div>
-        </li><br>
-      </ul>
-      <!-- Need to center -->
-      <button class="btn btn-secondary expand">Expand...</button><br>
-
-      <h2>Accepted Jobs</h2>
-      <ul class="list-group">
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-sm-8">
-              <span class="job-title">Can someone help me with snow-shoveling?</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Deadline: 05/06/2023</strong></span>
-            </div>
-            <div class="col-sm-12">
-              <span class="username">@Don Mon</span>
-            </div>
-            <div class="col-sm-8">
-              <span class="description"><strong>Description: </strong>I need some help with...</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Tokens: 60</strong></span>
-            </div>
-          </div>
-        </li><br>
-
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-sm-8">
-              <span class="job-title">I need some help to take my groceries back...</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Deadline: 04/04/2023</strong></span>
-            </div>
-            <div class="col-sm-12">
-              <span class="username">@Waffles</span>
-            </div>
-            <div class="col-sm-8">
-              <span class="description"><strong>Description: </strong>I need some help with...</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Tokens: 10</strong></span>
-            </div>
-          </div>
-        </li><br>
-
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-sm-8">
-              <span class="job-title">I need a note-taker!</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Deadline: 06/13/2023</strong></span>
-            </div>
-            <div class="col-sm-12">
-              <span class="username">@Jane Doe</span>
-            </div>
-            <div class="col-sm-8">
-              <span class="description"><strong>Description: </strong>I need some help with...</span>
-            </div>
-            <div class="col-sm-4 text-end">
-              <span class="deadline"><strong>Tokens: 80</strong></span>
-            </div>
-          </div>
-        </li><br>
-      </ul>
-      <!-- Need to center -->
-      <button class="btn btn-secondary expand">Expand...</button><br>
+          <p class="mb-0">
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          </p>
+        </div>
+      </div>
     </div>
-  </body>
-</html>
+  </div>
+</body>
