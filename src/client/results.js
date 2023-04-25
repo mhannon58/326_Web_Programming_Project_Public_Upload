@@ -36,7 +36,8 @@ function displayListings(posts, container){
 
         const description = document.createElement('p');
         description.setAttribute('id', 'description');
-        description.innerText = `${post.post_description.slice(0,251)} ...`;
+        let text = post.post_description.length > 250 ? post.post_description.slice(0,251)+ "..." : post.post_description;
+        description.innerText = text;
 
         const tags = document.createElement('p');
         tags.setAttribute('id', 'tags');
