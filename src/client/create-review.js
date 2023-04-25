@@ -93,7 +93,7 @@ async function deleteReview(id){
 
 async function getAllReviews(){
     try{
-        const docs = await reviewdb.allDocs();
+        const docs = await reviewdb.allDocs({include_docs: true});
         console.log(docs)
         return docs
     }catch(err){
@@ -101,7 +101,7 @@ async function getAllReviews(){
     }
 }
 
-function populateReview(element){
+function populateReview(element, title_text, desc_text){
     var firstDiv = document.createElement("div");
     firstDiv.classList.add("card")
     firstDiv.classList.add("mb-4")
@@ -121,11 +121,11 @@ function populateReview(element){
     head3.classList.add("mb-0")
 
     var title = document.createElement("a")
-    title.innerHTML = "<a> This is an example </a>"
+    title.innerHTML = "<a>" + title_text + "</a>"
 
     var desc = document.createElement("p")
     desc.classList.add("mb-0")
-    desc.innerHTML = "<p> This is a place holderThis is a place holderThis is a place holderThis is a place holderThis is a place holderThis is a place holderThis is a place holder </p>"
+    desc.innerHTML = "<p>" + desc_text + "</p>"
 
     firstDiv.appendChild(cardBody)
     cardBody.appendChild(firstRow)
@@ -142,8 +142,14 @@ const postContent = document.getElementById('description');
 const postButton = document.getElementById('post')
 const reviewLoc = document.getElementById('reviews')
 
-console.log(reviewLoc)
-populateReview(reviewLoc)
+getAllReviews().then((reviews) =>{
+    console.log((reviews.rows))
+    for( let r of reviews.rows){
+        console.log(typeof(r.doc.Title))
+        populateReview(reviewLoc, r.doc.Title, r.doc.Description)
+    }
+})
+
 
 postButton.addEventListener('click', () => {
     const title = postTitle.value;

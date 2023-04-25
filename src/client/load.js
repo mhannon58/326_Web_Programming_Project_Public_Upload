@@ -1,7 +1,7 @@
 // add mock_posts and mock_profile to pouchDB if they do not exist
 
 async function loadPosts() {
-  const db = new PouchDB('posts');
+  const db = new PouchDB('Posts');
   const response = await fetch('/data/mock_posts.json');
   const posts = await response.json();
 
