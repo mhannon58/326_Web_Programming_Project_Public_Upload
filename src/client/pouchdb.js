@@ -60,4 +60,18 @@ export class Crud
       console.error('Failed to delete document: ', err);
     }
   }
+
+  async getAllDocs()
+  {
+    try 
+    {
+      const response = await this.db.allDocs({include_docs: true});
+      console.log('All documents retrieved: ', response);
+      return response;
+    } 
+    catch(err)
+    {
+      console.error('Failed to retrieve documents: ', err);
+    }
+  }
 }

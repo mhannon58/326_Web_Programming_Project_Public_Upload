@@ -5,3 +5,7 @@ iframe {
 .container {
   margin-left: 20px; /* Adjust the value as needed */
 }
+
+.doc-desc {
+  font-size: medium;
+}
