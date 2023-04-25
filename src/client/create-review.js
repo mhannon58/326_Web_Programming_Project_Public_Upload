@@ -1,4 +1,4 @@
-import * as CRUD_reviews from "./CRUD-Reviews.js"
+import * as CRUD_reviews from "./reviewcrud.js"
 let postdb = new PouchDB('Posts')
 let generaldb = new PouchDB('General')
 let reviewdb = new PouchDB('Reviews')
