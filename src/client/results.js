@@ -15,19 +15,17 @@ let posts = [{"post_id":1,"post_title":"sodales sed tincidunt eu felis fusce pos
 {"post_id":15,"post_title":"interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue","post_description":"curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc","post_tags":"","profile_id":79,"tokens":7,"deadline":"2022-07-03","finished":false}]
 //let posts = readPosts();
 
-
-const postTitle = document.getElementById('title');
-const postContent = document.getElementById('description');
 const searchText = document.getElementById('search');
 const searchButton = document.getElementById('search-btn');
-const tokenNumber = document.getElementById('tokens');
-const deadline = document.getElementById('deadline');
-const postTags = document.getElementById('tags');
+const tagSearch = document.getElementById('tag-search');
+const tags = document.getElementById('tag');
+const sortOptions = document.getElementsByClassName('sort');
+
 const resultsDiv = document.getElementById('results');
 
 // Dynamically create listing elements given a list of posts
-function displayListings(posts){
-    resultsDiv.innerHTML = '';
+function displayListings(posts, container){
+    container.innerHTML = '';
     posts.forEach(post => {
         const listing = document.createElement('div');
         listing.classList.add('container', 'border', 'py-3', 'my-3');
@@ -37,19 +35,23 @@ function displayListings(posts){
 
         const col1 = document.createElement('div');
         col1.classList.add('col-8');
+
         const title = document.createElement('h5');
         title.setAttribute('id', 'title');
         title.innerText = post.post_title;
+
         const description = document.createElement('p');
         description.setAttribute('id', 'description');
         description.innerText = `${post.post_description.slice(0,251)} ...`;
+
         const tags = document.createElement('p');
         tags.setAttribute('id', 'tags');
         tags.classList.add('mb-0');
-        tags.innerText = post.post_tags;
+        tags.innerText = 'Tags: ' + post.post_tags.toUpperCase().split(' ').join(', ');
+
         const deadline = document.createElement('p');
         deadline.setAttribute('id', 'deadline');
-        deadline.innerText = post.deadline;
+        deadline.innerText = `Deadline: ${post.deadline}`;
 
         col1.append(title);
         col1.append(description);
@@ -59,15 +61,22 @@ function displayListings(posts){
 
         const col2 = document.createElement('div');
         col2.classList.add('col-4','text-end');
+
         const view = document.createElement('button');
         view.setAttribute('onclick', 'null'); // button has no path
+        view.innerText = 'View';
+        view.classList.add('btn', 'btn-primary');
+        view.setAttribute('type', 'button');
+
         const user = document.createElement('p');
         user.setAttribute('id', 'name');
-        user.innerText = `User # ${post.profile_id}`;
+        user.innerText = `User # ${post.profile_id}`; // placeholder username, eventually links to profile
+
         const tokens = document.createElement('p');
         tokens.classList.add('mb-0');
         tokens.setAttribute('id', 'tokens');
-        tokens.innerText = post.tokens;
+        tokens.innerText = "Tokens: " + post.tokens;
+
         col2.append(view);
         col2.append(user);
         col2.append(tokens);
@@ -76,12 +85,11 @@ function displayListings(posts){
         row.append(col2);
         listing.append(row);
 
-        console.log('hi');
-        resultsDiv.append(listing);
+        container.append(listing);
     });
 }
 
-displayListings(posts.slice(0,11)); // display the first 10 posts by default
+displayListings(posts.slice(0,11), resultsDiv); // display the first 10 posts by default
 
 
 // Update listings on search
@@ -94,9 +102,30 @@ searchButton.addEventListener('click', ()=>{
         return title.includes(searchTerm) || description.includes(searchTerm);
     });
 
-    displayListings(listings);
+    displayListings(listings, resultsDiv);
 });
 
 // Filter listings based on selected tags
 
 // Sort listings
+Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> {
+    let active = document.getElementsByClassName('active');
+    if(active.length > 1){ active[1].classList.remove('active'); }
+    option.classList.add('active');
+    const field = option.innerText;
+    let listings = posts;
+    // let listings = readPosts();
+    if(field === 'Deadline'){
+        listings = listings.sort((a,b) => new Date(a.deadline) - new Date(b.deadline));
+    }
+    else if(field === 'A-Z'){
+        listings = listings.sort((a,b) => a.post_title > b.post_title ? 1 : a.post_title < b.post_title ? -1 : 0);
+    }
+    else if(field === 'Z-A'){
+        listings = listings.sort((a,b) => a.post_title < b.post_title ? 1 : a.post_title > b.post_title ? -1 : 0);
+    }
+    else if(field === 'Tokens'){
+        listings = listings.sort((a,b) => b.tokens - a.tokens);
+    }
+    displayListings(listings, resultsDiv);
+}));
