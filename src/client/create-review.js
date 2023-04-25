@@ -30,6 +30,8 @@ postButton.addEventListener('click', () => {
             console.log("The id we are about to post is", id);
             CRUD_reviews.createReview(id_string, title, desc);
         });
+
+        window.location.replace("profile-reviews.html")
         
     }
 });

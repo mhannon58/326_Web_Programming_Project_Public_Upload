@@ -40,6 +40,7 @@ function populateReview(element, title_text, desc_text){
 }
 
 const reviewLoc = document.getElementById('reviews')
+const reviewButton = document.getElementById('review-button')
 
 CRUD_reviews.getAllReviews().then((reviews) =>{
     console.log((reviews.rows))
