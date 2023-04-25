@@ -4,64 +4,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OddJobs - profile</title>
+    <title>OddJobs - reviews</title>
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="profile.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
     <script type= "module" src="list-reviews.js" defer></script>
+    <script type="module" src="profile.js" defer></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">OddJobs</a>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 20px;">
-    </div>
-  </nav>
-
-  <section style="background-color: #eee;">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col">
-          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-            <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">User</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">John Smith</h5>
-              <p class="text-muted mb-1">Student/Tutor</p>
-              <p class="text-muted mb-4">Amherst, MA</p>
-              <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Follow</button>
-                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-                <button type="button" class="btn btn-outline-primary ms-1">Reviews</button>
-              </div>
+<iframe src="navbar.html" width="100%"></iframe>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 id="full-name" class="my-3"></h5>
+            <p id="email" class="text-muted mb-1"></p>
+            <p class="text-muted mb-4">Amherst, MA</p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-outline-primary ms-1">Reviews</button>
+              <button type="button" class="btn btn-outline-primary ms-1">History</button>
             </div>
           </div>
-          
-        </div>
-        <div class="col-lg-8" id="reviews">
-          <h1> Reviews </h1>
         </div>
       </div>
+      <div class="col-lg-8" id="reviews">
+        <h1> Reviews </h1>
+      </div>
     </div>
-  </section>
+  </div>
 </body>
-
-</html>
