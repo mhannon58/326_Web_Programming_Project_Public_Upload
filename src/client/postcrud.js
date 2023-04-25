@@ -1,8 +1,8 @@
 let postdb = new PouchDB('Posts')
 let generaldb = new PouchDB('General')
 
-reset_posts()
-reset_general()
+//reset_posts()
+//reset_general()
 
 async function loadPosts() {
     const response = await fetch('/data/mock_posts.json');
@@ -41,7 +41,7 @@ async function _init_(){
         const doc = await generaldb.get("posting_count")
         console.log("Count has been created",doc)
     }catch(err){
-        await generaldb.put({_id:"posting_count", count: 200}) //mock loaded
+        await generaldb.put({_id:"posting_count", count: 20}) //mock loaded
     }
 }
 
