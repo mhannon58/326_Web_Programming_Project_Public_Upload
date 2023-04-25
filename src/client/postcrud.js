@@ -48,7 +48,7 @@ async function _init_() {
 async function getNextId() {
     let doc = "placeholder";
     let nextId = 0;
-    try{
+    try {
         doc = await generaldb.get("posting_count");
         nextId = doc.count;
         console.log("The current id is", doc.count, typeof(doc.count));
