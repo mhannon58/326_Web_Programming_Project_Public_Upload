@@ -24,6 +24,7 @@ export class Crud
     {
       const doc = await this.db.get(docID);
       console.log('Document retrieved: ', doc);
+      return doc;
     } 
     catch(err)
     {
