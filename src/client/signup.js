@@ -21,4 +21,6 @@ registerButton.addEventListener("click", async function(event) {
 
   await signupObj.createDoc(doc);
   let stored = await signupObj.readDoc(username);
+
+  window.location.replace("search.html")
 });

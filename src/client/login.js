@@ -11,4 +11,7 @@ loginButton.addEventListener("click", async function(event) {
   
   let username = document.getElementById("username").value;
   userData = await loginObj.readDoc(username);
+
+  window.location.replace("search.html")
+  
 });
