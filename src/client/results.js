@@ -108,7 +108,6 @@ searchButton.addEventListener('click', ()=>{
 // Filter listings based on selected tags
 
 // Sort listings
-    
 Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> {
     let active = document.getElementsByClassName('active');
     if(active.length > 1){ active[1].classList.remove('active'); }
