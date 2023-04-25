@@ -137,8 +137,6 @@ function populateReview(element){
     cardBody.appendChild(desc)
 }
 
-console.log(getAllReviews())
-console.log(readReview("review27"))
 const postTitle = document.getElementById('title');
 const postContent = document.getElementById('description');
 const postButton = document.getElementById('post')
