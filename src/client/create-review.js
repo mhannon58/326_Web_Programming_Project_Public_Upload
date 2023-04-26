@@ -34,18 +34,18 @@ postButton.addEventListener('click', () => {
         CRUD_reviews.getNextId().then(async (id) => {
             const id_string = "review" + id.toString();
 
-            // updates list of review IDs
-            // have to use arbitrary username for now: "johndoe123"
-            let userData = await signupObj.readDoc("johndoe123");
+            let username = localStorage.getItem("curr_user")
+
+            let userData = await signupObj.readDoc(username);
             userData.reviews.push(id_string);
-            signupObj.updateDoc("johndoe123", { reviews: userData.reviews })
-            userData = await signupObj.readDoc("johndoe123");
+            signupObj.updateDoc(username, { reviews: userData.reviews })
+            userData = await signupObj.readDoc(username);
 
             console.log("The id we are about to post is", id);
             CRUD_reviews.createReview(id_string, title, desc);
         });
 
-        window.location.replace("profile-reviews.html")
+        // window.location.replace("profile-reviews.html")
         
     }
 });

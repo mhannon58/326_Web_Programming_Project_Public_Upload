@@ -8,6 +8,7 @@ registerButton.addEventListener("click", async function(event) {
   event.preventDefault();
 
   let username = document.getElementById("username").value;
+  localStorage.setItem("curr_user", username);
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   let doc = {
@@ -15,7 +16,9 @@ registerButton.addEventListener("click", async function(event) {
       email: email,
       password: password,
       createdPosts: [],
-      reviews: []
+      acceptedPosts: [],
+      reviews: [],
+      tokens: 0
   }
 
   await signupObj.createDoc(doc);

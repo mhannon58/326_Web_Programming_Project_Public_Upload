@@ -1,4 +1,4 @@
-import { getAllPosts } from "./postcrud.js";
+import { getAllPosts, _init_ } from "./postcrud.js";
 
 let posts = [];
 
@@ -7,7 +7,7 @@ async function refresh(){
     return docs.rows.map(d=>d.doc);
 }
 
-posts = await refresh();
+// posts = await refresh();
 
 const searchText = document.getElementById('search');
 const searchButton = document.getElementById('search-btn');
@@ -58,7 +58,11 @@ function displayListings(posts, container){
         const col2 = document.createElement('div');
         col2.classList.add('col-4','text-end');
         const view = document.createElement('button');
-        view.setAttribute('onClick', 'window.location.href="./listing.html"'); // button has no specified path
+        // view.setAttribute('onClick', 'window.location.href="./listing.html"'); // button has no specified path
+        view.addEventListener("click", function() {
+            localStorage.setItem("curr_post_id", post._id)
+            window.location.href="./listing.html"
+        });
         view.innerText = 'View';
         view.classList.add('btn', 'btn-primary');
         view.setAttribute('type', 'button');
@@ -84,8 +88,12 @@ function displayListings(posts, container){
     });
 }
 
-
-displayListings(posts, resultsDiv); // display mockdata
+// _init_().then(() => refresh().then(posts => {
+//     displayListings(posts, resultsDiv); // display mockdata
+// }))
+refresh().then(posts => {
+    displayListings(posts, resultsDiv); // display mockdata
+})
 
 
 // Update listings on search
