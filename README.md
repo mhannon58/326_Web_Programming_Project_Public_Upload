@@ -29,7 +29,7 @@ Max Hannon ([mhannon58](https://github.com/mhannon58))
 
 - **Reviews** - Users can give reviews for tasks they worked on and their compensation, as well as how well an acceptor performed a task. This can affect the status of requesters and acceptors.
 
-**Search history** - The web app can maintain a limited history of tasks that a user viewed.
+- **Search history** - The web app can maintain a limited history of tasks that a user viewed.
 
 ## Functionality
 
