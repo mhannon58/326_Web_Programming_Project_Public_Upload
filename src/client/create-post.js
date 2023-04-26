@@ -51,12 +51,12 @@ postButton.addEventListener('click', async () => {
         getNextId().then(async (id) => {
             const id_string = id.toString();
             
-            // updates list of post IDs
-            // have to use arbitrary username for now: "johndoe123"
-            let userData = await signupObj.readDoc("johndoe123");
+            let username = localStorage.getItem("curr_user")
+
+            let userData = await signupObj.readDoc(username);
             userData.createdPosts.push(id_string);
-            signupObj.updateDoc("johndoe123", { createdPosts: userData.createdPosts })
-            userData = await signupObj.readDoc("johndoe123");
+            signupObj.updateDoc(username, { createdPosts: userData.createdPosts })
+            userData = await signupObj.readDoc(username);
 
             console.log("The id we are about to post is", id);
             createPost(id_string, title, desc, tags, tokens, date);

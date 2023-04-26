@@ -37,6 +37,7 @@ function reset_general() {
 };
 
 async function _init_() {
+    await loadPosts();
     try {
         const doc = await generaldb.get("posting_count");
         console.log("Count has been created", doc);
@@ -142,5 +143,6 @@ export {
     updatePost,
     deletePost,
     getAllPosts,
-    getNextId
+    getNextId,
+    _init_
 };
