@@ -7,7 +7,7 @@ async function refresh(){
     return docs.rows.map(d=>d.doc);
 }
 
-// posts = await refresh();
+posts = await refresh();
 
 const searchText = document.getElementById('search');
 const searchButton = document.getElementById('search-btn');
@@ -20,6 +20,11 @@ const resultsDiv = document.getElementById('results');
 // Dynamically create listing elements given a list of posts
 function displayListings(posts, container){
     container.innerHTML = '';
+    if(posts.length <= 0) {
+        const message = document.createElement('h5');
+        message.innerText = 'REFRESH THE PAGE';
+        container.append(message);
+    } else {
     posts.filter(x=>!x.finished).forEach(post => {
         const listing = document.createElement('div');
         listing.classList.add('container', 'border', 'py-3', 'my-3');
@@ -87,14 +92,9 @@ function displayListings(posts, container){
         container.append(listing);
     });
 }
+}
 
-// _init_().then(() => refresh().then(posts => {
-//     displayListings(posts, resultsDiv); // display mockdata
-// }))
-refresh().then(posts => {
-    displayListings(posts, resultsDiv); // display mockdata
-})
-
+displayListings(posts, resultsDiv); // display mockdata
 
 // Update listings on search
 searchButton.addEventListener('click', ()=>{
