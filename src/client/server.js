@@ -11,3 +11,8 @@ app.use(logger("dev"));
 
 app.use(express.json());
 
+app.use(express.static("src/client"));
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
