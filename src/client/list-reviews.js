@@ -1,8 +1,9 @@
 import * as CRUD_reviews from "./reviewcrud.js"
+import { Crud } from './pouchdb.js';
 let postdb = new PouchDB('Posts')
 let generaldb = new PouchDB('General')
 let reviewdb = new PouchDB('Reviews')
-
+let userdb = new Crud('signup_db');
 function populateReview(element, title_text, desc_text){
     var firstDiv = document.createElement("div");
     firstDiv.classList.add("card")
