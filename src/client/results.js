@@ -7,8 +7,6 @@ async function refresh(){
     return docs.rows.map(d=>d.doc);
 }
 
-posts = await refresh();
-
 const searchText = document.getElementById('search');
 const searchButton = document.getElementById('search-btn');
 const tagSearch = document.getElementById('tag-search');
@@ -94,19 +92,22 @@ function displayListings(posts, container){
 }
 }
 
+posts = await refresh();
 displayListings(posts, resultsDiv); // display mockdata
 
-// Update listings on search
-searchButton.addEventListener('click', ()=>{
-    refresh();
+function grab(){
     let searchTerm = searchText.value.toLowerCase();
-    let listings = posts.filter(post => {
+    return posts.filter(post => {
         let title = post.post_title.toLowerCase();
         let description = post.post_description.toLowerCase();
         return title.includes(searchTerm) || description.includes(searchTerm);
     });
+}
 
-    displayListings(listings, resultsDiv);
+// Update listings on search
+searchButton.addEventListener('click', ()=>{
+    let searchTerm = searchText.value.toLowerCase();
+    displayListings(grab(), resultsDiv);
 });
 
 // Filter listings based on selected tags
@@ -118,7 +119,7 @@ Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> 
     if(active.length > 0){ active[0].classList.remove('active'); }
     option.classList.add('active');
     const field = option.innerText;
-    let listings = posts;
+    let listings = grab();
     if(field === 'Deadline'){
         listings = listings.sort((a,b) => new Date(a.deadline) - new Date(b.deadline));
     }
