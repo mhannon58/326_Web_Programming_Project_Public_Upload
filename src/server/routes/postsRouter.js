@@ -1,5 +1,4 @@
 import express from "express";
-import PouchDB from "pouchdb";
 
 const router = express.Router();
 
@@ -17,16 +16,16 @@ const client = new MongoClient(uri, {
 });
 
 async function run() {
-  try {
+  //try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
+  //} //finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
-  }
+    //await client.close();
+  //}
 }
 run().catch(console.dir);
 
@@ -51,15 +50,20 @@ router.get("/posts/:postId", async (req, res) => {
 
 // POST request to create a new post and add it to the PouchDB database, using the JSON body on the request
 router.post("/posts", async (req, res) => {
-  const { title, content } = req.body;
+  const { post_title, post_description, post_tags, profile_id, accept_id, tokens, deadline, finished } = req.body;
 
   try {
-    const newPost = await db.post({
-      title: title,
-      content: content,
+    const result = await client.db("db").collection("posts").insertOne({
+      post_title: post_title,
+      post_description: post_description,
+      post_tags: post_tags, 
+      profile_id: profile_id, 
+      accept_id: accept_id,
+      tokens: tokens,
+      deadline: deadline,
+      finished: finished
     });
-
-    res.send(`Successfully created post with ID ${newPost.id}`);
+    console.log(`New listing created with the following id: ${result.insertedId}`);
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
