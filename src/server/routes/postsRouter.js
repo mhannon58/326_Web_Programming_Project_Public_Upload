@@ -58,7 +58,7 @@ router.post("/profiles", async (req, res) => {
       password: password
     });
     console.log(`New profile created with the following id: ${result.insertedId}`);
-    res.status(200).send();
+    res.status(200).send(result.insertedId);
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
