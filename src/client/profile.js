@@ -74,8 +74,14 @@ function displayListings(posts, container){
 
 
 async function setup() {
-  const profiles = await loadProfiles();
-  const profile = await profiles.get('1');
+  // const profiles = await loadProfiles();
+  // const profile = await profiles.get('1');
+
+  let route = "/profiles/:" + localStorage.getItem("curr_user");
+  const response = await fetch(route, {
+    method: 'GET'
+  });
+  const profile = await response.json();
 
   const listings = document.getElementById('listings');
 
