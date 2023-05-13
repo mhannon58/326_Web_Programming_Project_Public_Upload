@@ -2,7 +2,6 @@ import express from "express";
 import logger from "morgan";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import auth from 'auth.js';
 
 
 const __filename = fileURLToPath(import.meta.url);
