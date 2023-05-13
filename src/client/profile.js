@@ -4,6 +4,8 @@ import { initNavbar } from "./navbar.js";
 
 initNavbar();
 
+export let otherProfileName = '';
+
 function displayListings(posts, container){
   container.innerHTML = '';
   //posts.filter(x => x["profile_id"] === 1 && x["finished"] === false).forEach(post => {
@@ -108,6 +110,12 @@ async function setup() {
   const email = document.getElementById('email');
   email.textContent = profile.email;
 
+  let reviews = document.getElementById("review-button");
+  reviews.addEventListener("click", () => {
+    let url = window.location.href;
+    otherProfileName = url.split("/")[2].substring(1);
+    window.location.replace("profile-reviews.html");
+  });
 }
 
 // need to be able to read the mock_profiles
