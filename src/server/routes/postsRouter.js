@@ -117,6 +117,19 @@ app.get("/profiles/:profileID", async (req, res) => {
   }
 });
 
+// GET request to return specific profile by email
+app.get("/profiles/:email", async (req, res) => {
+  const profile = await client.db("db").collection("profiles").findOne(req.params.email);
+
+  // post not found
+  if (!profile) {
+    res.status(500).send("Profile not found.");
+  }
+  else {
+    res.status(200).send(profile);
+  }
+});
+
 // GET request to return all posts specific to profile
 router.get("/reviews/:revieweeID", async (req, res) => {
   const data = await this.client.db("db").collection("reviews").find({ "reviewee": revieweeID }).toArray();
