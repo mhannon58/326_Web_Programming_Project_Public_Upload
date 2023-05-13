@@ -214,6 +214,7 @@ router.put("/postAccepted", async (req, res) => {
 });
 
 // PUT request to mark post as finished 
+// TODO
 router.put("/postFinished", async (req, res) => {
   const { post_id, accept_id } = req.body;
 
@@ -236,19 +237,41 @@ router.put("/postFinished", async (req, res) => {
     // a person has accepted the post
     // transfer the tokens from user A to B
     if (post.accept_id) {
-      console.log(`Mark post ${post_id} as finished; post has already been accepted by user ${post.accept_id}`);
+      const user = await client.db("db").collection("profiles").findOne(ObjectId(post.accept_id));
 
-      // TODO
+      if (!user) {
+        console.log(`User ${post.accept_id} not found. Could not mark post as finished.`);
+        res.status(500).send({ status: "failure" });
+        return;
+      }
+
+      console.log(`Mark post ${post_id} as finished`);
+
+      const update = { $set: { finished: true } };
+      await client.db("db").collection("posts").updateOne(ObjectId(post_id), update);
+
+      update = { $set: { tokens: user.tokens + post.tokens } };
+      await client.db("db").collection("profiles").updateOne(ObjectId(post.accept_id), update);
     }
 
     // noone accepted the post
     // return tokens to user
     else {
-      
-      const update = { $set: { accept_id: accept_id } };
+      const user = await client.db("db").collection("profiles").findOne(ObjectId(post.profile_id));
+
+      if (!user) {
+        console.log(`User ${post.profile_id} not found. Could not mark post as finished.`);
+        res.status(500).send({ status: "failure" });
+        return;
+      }
+
+      console.log(`Mark post ${post_id} as finished`);
+
+      const update = { $set: { finished: true } };
       await client.db("db").collection("posts").updateOne(ObjectId(post_id), update);
 
-      console.log(`Listing with id ${post_id} has been accepted by user ${accept_id}`);
+      update = { $set: { tokens: user.tokens + post.tokens } };
+      await client.db("db").collection("profiles").updateOne(ObjectId(post.profile_id), update);
     }
 
     res.status(200).send({ status: "success" });
