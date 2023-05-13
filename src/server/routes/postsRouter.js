@@ -25,7 +25,7 @@ run().catch(console.dir);
 
 // POST request to create a new post, using the JSON body on the request
 router.post("/posts", async (req, res) => {
-  const { post_title, post_description, post_tags, profile_id, accept_id, tokens, deadline, finished } = req.body;
+  const { post_title, post_description, post_tags, profile_id, tokens, deadline, finished } = req.body;
 
   try {
     const result = await client.db("db").collection("posts").insertOne({
@@ -33,7 +33,7 @@ router.post("/posts", async (req, res) => {
       post_description: post_description,
       post_tags: post_tags, 
       profile_id: profile_id, 
-      accept_id: accept_id,
+      accept_id: null,
       tokens: tokens,
       deadline: deadline,
       finished: finished
@@ -147,6 +147,34 @@ app.get("/reviews/:reviewID", async (req, res) => {
   }
   else {
     res.status(200).send(review);
+  }
+});
+
+// PUT request to mark post as finished 
+router.put("/postAccepted", async (req, res) => {
+  const { post_id, accept_id } = req.body;
+
+  try {
+    const post = await client.db("db").collection("posts").findOne({
+      "_id": post_id
+    });
+
+    // post has already been accepted
+    if (post.accept_id) {
+      console.log(`Failure to accept listing with id ${post_id}; post has already been accepted by user ${post.accept_id}`);
+      res.status(200).send({ status: "failure" });
+      return;
+    }
+
+    // update post
+    const update = { $set: { accept_id: accept_id } };
+    await client.db("db").collection("posts").updateOne({"_id": post_id}, update);
+
+    console.log(`Listing with id ${post_id} has been accepted by user ${accept_id}`);
+    res.status(200).send({ status: "success" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
   }
 });
 
