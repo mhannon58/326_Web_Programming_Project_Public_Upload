@@ -39,7 +39,7 @@ router.post("/posts", async (req, res) => {
       finished: false
     });
 
-    // TODO check if profile has enough tokens and then subtract from balance
+    // check if profile has enough tokens and then subtract from balance
     const profile = await client.db("db").collection("profiles").findOne(ObjectId(profile_id));
 
     // profile not found
@@ -72,14 +72,28 @@ router.post("/profiles", async (req, res) => {
   const { user_name, email, password } = req.body;
 
   try {
+    // make sure that user_name and email are unique
+    let notUnique = await client.db("db").collection("profiles").findOne({ user_name: user_name });
+    if (notUnique) {
+      console.log(`Username ${user_name} is not unique.`);
+      res.status(500).send();
+      return;
+    }
+    notUnique = await client.db("db").collection("profiles").findOne({ email: email });
+    if (notUnique) {
+      console.log(`Email ${email} is not unique.`);
+      res.status(500).send();
+      return;
+    }
+
     const result = await client.db("db").collection("profiles").insertOne({
       user_name: user_name,
       email: email, 
       tokens: 100,
       password: password
     });
+    
 
-    // TODO make sure that user_name and email are unique
 
     console.log(`New profile created with the following id: ${result.insertedId}`);
     res.status(200).send(result.insertedId);
@@ -214,9 +228,8 @@ router.put("/postAccepted", async (req, res) => {
 });
 
 // PUT request to mark post as finished 
-// TODO
 router.put("/postFinished", async (req, res) => {
-  const { post_id, accept_id } = req.body;
+  const { post_id } = req.body;
 
   try {
     const post = await client.db("db").collection("posts").findOne(ObjectId(post_id));
