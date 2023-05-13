@@ -16,37 +16,12 @@ const client = new MongoClient(uri, {
 });
 
 async function run() {
-  //try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  //} //finally {
-    // Ensures that the client will close when you finish/error
-    //await client.close();
-  //}
+  await client.connect();
+  // Send a ping to confirm a successful connection
+  await client.db("admin").command({ ping: 1 });
+  console.log("Pinged your deployment. You successfully connected to MongoDB!");
 }
 run().catch(console.dir);
-
-// GET request to return all documents in our PouchDB database
-router.get("/posts", async (req, res) => {
-  let posts = await db.allDocs({
-    include_docs: true,
-    attachments: true,
-  });
-
-  res.send(posts.rows);
-});
-
-// GET request to return a post specified by id in the url params
-router.get("/posts/:postId", async (req, res) => {
-  const { postId } = req.params;
-
-  const post = await db.get(postId);
-
-  res.send(post);
-});
 
 // POST request to create a new post, using the JSON body on the request
 router.post("/posts", async (req, res) => {
@@ -109,8 +84,57 @@ router.post("/reviews", async (req, res) => {
   }
 });
 
+// GET request to return all posts
+router.get("/posts", async (req, res) => {
+  const data = await this.client.db("db").collection("posts").find().toArray();
 
+  res.status(200).send(data);
+});
 
+// GET request to return specific post
+app.get("/posts/:postID", async (req, res) => {
+  const post = await client.db("db").collection("posts").findOne(req.params.postID);
 
+  // post not found
+  if (!post) {
+    res.status(500).send("Post not found.");
+  }
+  else {
+    res.status(200).send(post);
+  }
+});
+
+// GET request to return specific profile
+app.get("/profiles/:profileID", async (req, res) => {
+  const profile = await client.db("db").collection("profiles").findOne(req.params.profileID);
+
+  // post not found
+  if (!profile) {
+    res.status(500).send("Profile not found.");
+  }
+  else {
+    res.status(200).send(profile);
+  }
+});
+
+// GET request to return all posts specific to profile
+router.get("/reviews/:revieweeID", async (req, res) => {
+  const data = await this.client.db("db").collection("reviews").find({ "reviewee": revieweeID }).toArray();
+
+  res.status(200).send(data);
+});
+
+// GET request to return specific post
+app.get("/reviews/:reviewID", async (req, res) => {
+  const review = await client.db("db").collection("reviews").findOne(req.params.reviewID);
+
+  // post not found
+  if (!review) {
+    res.status(500).send("Review not found.");
+  }
+  else {
+    res.status(200).send(review);
+  }
+});
 
 export default router;
