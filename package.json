@@ -2,12 +2,12 @@
   "name": "326-project-repo-team-44",
   "version": "1.0.0",
   "description": "**Team Name**: Team 44",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/server/server.js"
   },
   "repository": {
     "type": "git",

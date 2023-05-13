@@ -15,13 +15,11 @@ app.use(logger("dev"));
 // Support JSON on requests
 app.use(express.json());
 
-app.use(express.static("326-project-repo-team-44/"));
-
 app.get('/', (req, res) => {
-  res.sendFile('src/client/home.html', {root: './326-project-repo-team-44'});
+  res.sendFile('src/client/home.html', {root: './'});
 });
 
-app.use(express.static("326-project-repo-team-44/src/client"));
+app.use(express.static("src/client"));
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
