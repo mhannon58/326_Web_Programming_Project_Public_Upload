@@ -4,22 +4,30 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = dirname(dirname(__filename));
+console.log(__dirname);
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Use the logger middleware to easily log every HTTP request to our server
 app.use(logger("dev"));
 
+
 // Support JSON on requests
 app.use(express.json());
+// Allow URLencoded data
+app.use(express.urlencoded({ extended: true }));
+// Allow static file serving
+app.use(express.static(__dirname + '/client'));
 
 app.get('/', (req, res) => {
-  res.sendFile('src/client/home.html', {root: './'});
+  res.redirect('home.html');
 });
 
-app.use(express.static("src/client"));
+app.get('/login', (req, res) => {
+  res.sendFile('client/login.html', {root: __dirname});
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
