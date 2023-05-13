@@ -2,17 +2,17 @@ import express from "express";
 import logger from "morgan";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import auth from 'auth.js';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(dirname(__filename));
-console.log(__dirname);
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Use the logger middleware to easily log every HTTP request to our server
 app.use(logger("dev"));
-
 
 // Support JSON on requests
 app.use(express.json());

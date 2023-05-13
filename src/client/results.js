@@ -1,19 +1,22 @@
 import { getAllPosts, _init_ } from "./postcrud.js";
 
-let posts = [];
-
-async function refresh(){
-    let docs = await getAllPosts();
-    return docs.rows.map(d=>d.doc);
-}
-
 const searchText = document.getElementById('search');
 const searchButton = document.getElementById('search-btn');
 const tagSearch = document.getElementById('tag-search');
 const tags = document.getElementById('tag');
 const sortOptions = document.getElementsByClassName('sort');
-
 const resultsDiv = document.getElementById('results');
+
+let posts = [];
+
+async function refresh(){
+    return await fetch('/posts', {
+        method: 'GET'
+    });
+    //PouchDB
+    //let docs = await getAllPosts();
+    //return docs.rows.map(d=>d.doc);
+}
 
 // Dynamically create listing elements given a list of posts
 function displayListings(posts, container){
