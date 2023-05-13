@@ -76,6 +76,13 @@ function displayListings(posts, container){
 
 
 async function setup() {
+  let reviews = document.getElementById("review-button");
+  reviews.addEventListener("click", () => {
+    let url = window.location.href;
+    otherProfileName = url.split("/")[2].substring(1);
+    window.location.href = "./profile-reviews.html";
+  });
+  
   // const profiles = await loadProfiles();
   // const profile = await profiles.get('1');
 
@@ -109,13 +116,6 @@ async function setup() {
   // set email
   const email = document.getElementById('email');
   email.textContent = profile.email;
-
-  let reviews = document.getElementById("review-button");
-  reviews.addEventListener("click", () => {
-    let url = window.location.href;
-    otherProfileName = url.split("/")[2].substring(1);
-    window.location.replace("profile-reviews.html");
-  });
 }
 
 // need to be able to read the mock_profiles

@@ -46,22 +46,38 @@ postButton.addEventListener('click', async () => {
     }
     else {
         // create post here
-        alert(`${title} ${desc} ${tokens} ${date}`);
-        alert(tags);      
-        getNextId().then(async (id) => {
-            const id_string = id.toString();
+        // alert(`${title} ${desc} ${tokens} ${date}`);
+        // alert(tags);      
+        // getNextId().then(async (id) => {
+        //     const id_string = id.toString();
             
-            let username = localStorage.getItem("curr_user")
+        //     let username = localStorage.getItem("curr_user")
 
-            let userData = await signupObj.readDoc(username);
-            userData.createdPosts.push(id_string);
-            signupObj.updateDoc(username, { createdPosts: userData.createdPosts })
-            userData = await signupObj.readDoc(username);
+        //     let userData = await signupObj.readDoc(username);
+        //     userData.createdPosts.push(id_string);
+        //     signupObj.updateDoc(username, { createdPosts: userData.createdPosts })
+        //     userData = await signupObj.readDoc(username);
 
-            console.log("The id we are about to post is", id);
-            createPost(id_string, title, desc, tags, tokens, date);
-        });
+        //     console.log("The id we are about to post is", id);
+        //     createPost(id_string, title, desc, tags, tokens, date);
+        // });
+        
+        let pack = {
+            post_title: title,
+            post_description: desc,
+            post_tags: tags,
+            profile_id: localStorage.getItem("curr_user"),
+            tokens: tokens,
+            deadline: date
+        }
 
+        await fetch("/posts", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pack)
+          });
     }
 });
 
