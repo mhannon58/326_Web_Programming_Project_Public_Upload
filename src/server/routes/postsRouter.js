@@ -2,7 +2,7 @@ import express from "express";
 
 const router = express.Router();
 
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
 const uri = "mongodb+srv://team-44:123password123@team-44.3xrj2rq.mongodb.net/?retryWrites=true&w=majority";
 
@@ -25,7 +25,7 @@ run().catch(console.dir);
 
 // POST request to create a new post, using the JSON body on the request
 router.post("/posts", async (req, res) => {
-  const { post_title, post_description, post_tags, profile_id, tokens, deadline, finished } = req.body;
+  const { post_title, post_description, post_tags, profile_id, tokens, deadline } = req.body;
 
   try {
     const result = await client.db("db").collection("posts").insertOne({
@@ -36,9 +36,29 @@ router.post("/posts", async (req, res) => {
       accept_id: null,
       tokens: tokens,
       deadline: deadline,
-      finished: finished
+      finished: false
     });
+
+    // TODO check if profile has enough tokens and then subtract from balance
+    const profile = await client.db("db").collection("profiles").findOne(ObjectId(profile_id));
+
+    // profile not found
+    if (!profile) {
+      res.status(500).send("Profile not found.");
+      return;
+    }
+
+    // post requires more tokens than user has
+    if (tokens > profile.tokens) {
+      res.status(500).send("Not enough tokens.");
+      return;
+    }
+
+    const update = { $set: { tokens: profile.tokens - tokens } };
+    await client.db("db").collection("profiles").updateOne(ObjectId(profile_id), update);
+
     console.log(`New listing created with the following id: ${result.insertedId}`);
+    console.log(`Profile ${profile_id}'s new token amount is ${profile.tokens - tokens}`);
     res.status(200).send();
   } catch (err) {
     console.error(err);
@@ -47,16 +67,20 @@ router.post("/posts", async (req, res) => {
 });
 
 // POST request to create a new profile, using the JSON body on the request
+// give 100 tokens to each user
 router.post("/profiles", async (req, res) => {
-  const { user_name, email, tokens, password } = req.body;
+  const { user_name, email, password } = req.body;
 
   try {
     const result = await client.db("db").collection("profiles").insertOne({
       user_name: user_name,
       email: email, 
-      tokens: tokens,
+      tokens: 100,
       password: password
     });
+
+    // TODO make sure that user_name and email are unique
+
     console.log(`New profile created with the following id: ${result.insertedId}`);
     res.status(200).send(result.insertedId);
   } catch (err) {
@@ -93,7 +117,7 @@ router.get("/posts", async (req, res) => {
 
 // GET request to return specific post
 router.get("/posts/:postID", async (req, res) => {
-  const post = await client.db("db").collection("posts").findOne(req.params.postID);
+  const post = await client.db("db").collection("posts").findOne(ObjectId(req.params.postID));
 
   // post not found
   if (!post) {
@@ -106,9 +130,9 @@ router.get("/posts/:postID", async (req, res) => {
 
 // GET request to return specific profile
 router.get("/profiles/:profileID", async (req, res) => {
-  const profile = await client.db("db").collection("profiles").findOne(req.params.profileID);
+  const profile = await client.db("db").collection("profiles").findOne(ObjectId(req.params.profileID));
 
-  // post not found
+  // profile not found
   if (!profile) {
     res.status(500).send("Profile not found.");
   }
@@ -119,9 +143,9 @@ router.get("/profiles/:profileID", async (req, res) => {
 
 // GET request to return specific profile by email
 router.get("/profiles/:email", async (req, res) => {
-  const profile = await client.db("db").collection("profiles").findOne(req.params.email);
+  const profile = await client.db("db").collection("profiles").findOne({email: req.params.email});
 
-  // post not found
+  // profile not found
   if (!profile) {
     res.status(500).send("Profile not found.");
   }
@@ -139,9 +163,9 @@ router.get("/reviews/:revieweeID", async (req, res) => {
 
 // GET request to return specific post
 router.get("/reviews/:reviewID", async (req, res) => {
-  const review = await client.db("db").collection("reviews").findOne(req.params.reviewID);
+  const review = await client.db("db").collection("reviews").findOne(ObjectId(req.params.reviewID));
 
-  // post not found
+  // review not found
   if (!review) {
     res.status(500).send("Review not found.");
   }
@@ -150,14 +174,25 @@ router.get("/reviews/:reviewID", async (req, res) => {
   }
 });
 
-// PUT request to mark post as finished 
+// PUT request to mark post as accepted 
 router.put("/postAccepted", async (req, res) => {
   const { post_id, accept_id } = req.body;
 
   try {
-    const post = await client.db("db").collection("posts").findOne({
-      "_id": post_id
-    });
+    const post = await client.db("db").collection("posts").findOne(ObjectId(post_id));
+
+    if (!post) {
+      console.log(`Could not find post with id ${post_id}`);
+      res.status(500).send();
+      return;
+    }
+
+    // post has already been finished
+    if (post.finished) {
+      console.log(`Post ${post_id} has already been finished`);
+      res.status(200).send({ status: "failure" });
+      return;
+    }
 
     // post has already been accepted
     if (post.accept_id) {
@@ -168,9 +203,54 @@ router.put("/postAccepted", async (req, res) => {
 
     // update post
     const update = { $set: { accept_id: accept_id } };
-    await client.db("db").collection("posts").updateOne({"_id": post_id}, update);
+    await client.db("db").collection("posts").updateOne(ObjectId(post_id), update);
 
     console.log(`Listing with id ${post_id} has been accepted by user ${accept_id}`);
+    res.status(200).send({ status: "success" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
+});
+
+// PUT request to mark post as finished 
+router.put("/postFinished", async (req, res) => {
+  const { post_id, accept_id } = req.body;
+
+  try {
+    const post = await client.db("db").collection("posts").findOne(ObjectId(post_id));
+
+    if (!post) {
+      console.log(`Could not find post with id ${post_id}`);
+      res.status(500).send();
+      return;
+    }
+
+    // post has already been finished
+    if (post.finished) {
+      console.log(`Post ${post_id} has already been finished`);
+      res.status(200).send({ status: "failure" });
+      return;
+    }
+
+    // a person has accepted the post
+    // transfer the tokens from user A to B
+    if (post.accept_id) {
+      console.log(`Mark post ${post_id} as finished; post has already been accepted by user ${post.accept_id}`);
+
+      // TODO
+    }
+
+    // noone accepted the post
+    // return tokens to user
+    else {
+      
+      const update = { $set: { accept_id: accept_id } };
+      await client.db("db").collection("posts").updateOne(ObjectId(post_id), update);
+
+      console.log(`Listing with id ${post_id} has been accepted by user ${accept_id}`);
+    }
+
     res.status(200).send({ status: "success" });
   } catch (err) {
     console.error(err);
