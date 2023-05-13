@@ -17,53 +17,11 @@ app.use(express.json());
 
 app.use(express.static("326-project-repo-team-44/"));
 
-app.get('/',function(req,res) {
+app.get('/', (req, res) => {
   res.sendFile('src/client/home.html', {root: './326-project-repo-team-44'});
 });
 
-app.get('/search.html',function(req,res) {
-  res.sendFile('src/client/search.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/search.html',function(req,res) {
-  res.sendFile('src/client/search.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/create-post.html',function(req,res) {
-  res.sendFile('src/client/create-post.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/create-review.html',function(req,res) {
-  res.sendFile('src/client/create-review.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/history.html',function(req,res) {
-  res.sendFile('src/client/history.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/listing.html',function(req,res) {
-  res.sendFile('src/client/listing.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/login.html',function(req,res) {
-  res.sendFile('src/client/login.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/profile-reviews.html',function(req,res) {
-  res.sendFile('src/client/profile-reviews.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/profile.html',function(req,res) {
-  res.sendFile('src/client/profile.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/signup.html',function(req,res) {
-  res.sendFile('src/client/signup.html', {root: './326-project-repo-team-44'});
-});
-
-app.get('/navbar.html',function(req,res) {
-  res.sendFile('src/client/navbar.html', {root: './326-project-repo-team-44'});
-});
+app.use(express.static("326-project-repo-team-44/src/client"));
 
 // Use static middleware to serve our post html page and associated script when making a GET request to "/post"
 app.use("/post", express.static("src/client/post"));
