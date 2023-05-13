@@ -48,7 +48,7 @@ router.get("/posts/:postId", async (req, res) => {
   res.send(post);
 });
 
-// POST request to create a new post and add it to the PouchDB database, using the JSON body on the request
+// POST request to create a new post, using the JSON body on the request
 router.post("/posts", async (req, res) => {
   const { post_title, post_description, post_tags, profile_id, accept_id, tokens, deadline, finished } = req.body;
 
@@ -64,23 +64,53 @@ router.post("/posts", async (req, res) => {
       finished: finished
     });
     console.log(`New listing created with the following id: ${result.insertedId}`);
+    res.status(200).send();
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
   }
 });
 
-// DELETE request to destroy and recreate our database, effectively deleting all documents and starting fresh
-router.delete("/posts", async (req, res) => {
-  await db.destroy();
-  db = new PouchDB("posts");
+// POST request to create a new profile, using the JSON body on the request
+router.post("/profiles", async (req, res) => {
+  const { user_name, email, tokens, password } = req.body;
+
+  try {
+    const result = await client.db("db").collection("profiles").insertOne({
+      user_name: user_name,
+      email: email, 
+      tokens: tokens,
+      password: password
+    });
+    console.log(`New profile created with the following id: ${result.insertedId}`);
+    res.status(200).send();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
 });
 
-// OPTIONAL TODO
-// Add an update feature to the posts. This can be anything you want, be creative! This would complete the CRUD operations offered in the application
+// POST request to create a new review, using the JSON body on the request
+router.post("/reviews", async (req, res) => {
+  const { title, description, reviewer, reviewee } = req.body;
 
-router.put("", async (req, res) => {
-  res.send();
+  try {
+    const result = await client.db("db").collection("reviews").insertOne({
+      title: title,
+      description: description, 
+      reviewer: reviewer,
+      reviewee: reviewee
+    });
+    console.log(`New review created with the following id: ${result.insertedId}`);
+    res.status(200).send();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
 });
+
+
+
+
 
 export default router;
