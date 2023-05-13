@@ -92,7 +92,7 @@ router.get("/posts", async (req, res) => {
 });
 
 // GET request to return specific post
-app.get("/posts/:postID", async (req, res) => {
+router.get("/posts/:postID", async (req, res) => {
   const post = await client.db("db").collection("posts").findOne(req.params.postID);
 
   // post not found
@@ -105,7 +105,7 @@ app.get("/posts/:postID", async (req, res) => {
 });
 
 // GET request to return specific profile
-app.get("/profiles/:profileID", async (req, res) => {
+router.get("/profiles/:profileID", async (req, res) => {
   const profile = await client.db("db").collection("profiles").findOne(req.params.profileID);
 
   // post not found
@@ -118,7 +118,7 @@ app.get("/profiles/:profileID", async (req, res) => {
 });
 
 // GET request to return specific profile by email
-app.get("/profiles/:email", async (req, res) => {
+router.get("/profiles/:email", async (req, res) => {
   const profile = await client.db("db").collection("profiles").findOne(req.params.email);
 
   // post not found
@@ -138,7 +138,7 @@ router.get("/reviews/:revieweeID", async (req, res) => {
 });
 
 // GET request to return specific post
-app.get("/reviews/:reviewID", async (req, res) => {
+router.get("/reviews/:reviewID", async (req, res) => {
   const review = await client.db("db").collection("reviews").findOne(req.params.reviewID);
 
   // post not found
