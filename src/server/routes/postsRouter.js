@@ -127,6 +127,20 @@ router.get("/posts", async (req, res) => {
   res.status(200).send(data);
 });
 
+// GET request to return all posts posted by user
+router.get("/posts/posted/:profileID", async (req, res) => {
+  const data = await client.db("db").collection("posts").find({"profile_id": req.params.profileID}).toArray();
+
+  res.status(200).send(data);
+});
+
+// GET request to return all posts accepted by user
+router.get("/posts/accepted/:profileID", async (req, res) => {
+  const data = await client.db("db").collection("posts").find({"accept_id": req.params.profileID}).toArray();
+
+  res.status(200).send(data);
+});
+
 // GET request to return specific post
 router.get("/posts/:postID", async (req, res) => {
   try {
