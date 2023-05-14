@@ -335,5 +335,15 @@ router.put("/postFinished", async (req, res) => {
 });
 
 // TODO add delete to router
+router.delete("/deleteReview", async (req, res) => {
+  const { reviewID } = req.body;
+
+  try {
+    await client.db("db").collection("review").deleteOne({"_id": new ObjectId(reviewID)});
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
+});
 
 export default router;
