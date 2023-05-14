@@ -181,13 +181,13 @@ router.get("/profiles/username/:username", async (req, res) => {
 
 // GET request to return all posts specific to profile
 router.get("/reviews/:revieweeID", async (req, res) => {
-  const data = await client.db("db").collection("reviews").find({ "reviewee": revieweeID }).toArray();
+  const data = await client.db("db").collection("reviews").find({ "reviewee": req.params.revieweeID }).toArray();
 
   res.status(200).send(data);
 });
 
 // GET request to return specific post
-router.get("/reviews/:reviewID", async (req, res) => {
+router.get("/reviews/review/:reviewID", async (req, res) => {
   const review = await client.db("db").collection("reviews").findOne(new ObjectId(req.params.reviewID));
 
   // review not found
