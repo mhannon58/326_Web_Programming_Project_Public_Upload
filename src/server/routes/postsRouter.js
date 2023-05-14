@@ -154,8 +154,21 @@ router.get("/profiles/:profileID", async (req, res) => {
 });
 
 // GET request to return specific profile by email
-router.get("/profiles/:email", async (req, res) => {
+router.get("/profiles/email/:email", async (req, res) => {
   const profile = await client.db("db").collection("profiles").findOne({email: req.params.email});
+
+  // profile not found
+  if (!profile) {
+    res.status(500).send("Profile not found.");
+  }
+  else {
+    res.status(200).send(profile);
+  }
+});
+
+// GET request to return specific profile by username
+router.get("/profiles/username/:username", async (req, res) => {
+  const profile = await client.db("db").collection("profiles").findOne({user_name: req.params.username});
 
   // profile not found
   if (!profile) {
