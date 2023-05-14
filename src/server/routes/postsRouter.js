@@ -300,7 +300,7 @@ router.put("/postFinished", async (req, res) => {
 
       console.log(`Mark post ${post_id} as finished`);
 
-      const update = { $set: { finished: true } };
+      let update = { $set: { finished: true } };
       await client.db("db").collection("posts").updateOne({ "_id": new ObjectId(post_id) }, update);
 
       update = { $set: { tokens: user.tokens + post.tokens } };
@@ -320,7 +320,7 @@ router.put("/postFinished", async (req, res) => {
 
       console.log(`Mark post ${post_id} as finished`);
 
-      const update = { $set: { finished: true } };
+      let update = { $set: { finished: true } };
       await client.db("db").collection("posts").updateOne({ "_id": new ObjectId(post_id) }, update);
 
       update = { $set: { tokens: user.tokens + post.tokens } };
