@@ -86,11 +86,13 @@ async function setup() {
   // const profiles = await loadProfiles();
   // const profile = await profiles.get('1');
 
-  let route = "/profiles/:" + localStorage.getItem("curr_user");
+  console.log(localStorage.getItem("curr_user"));
+  let route = "/profiles/" + localStorage.getItem("curr_user");
   const response = await fetch(route, {
     method: 'GET'
   });
   const profile = await response.json();
+  console.log(profile);
 
   const listings = document.getElementById('listings');
 
@@ -103,15 +105,15 @@ async function setup() {
 
   posts = await refresh();
 
-  console.log(posts);
+  // console.log(posts);
 
   displayListings(posts, listings);
 
-  console.log(profile);
+  // console.log(profile);
 
   // set profile name
   const profileName = document.getElementById('full-name');
-  profileName.textContent = `${profile.first_name} ${profile.last_name}`;
+  profileName.textContent = `${profile.user_name}`;
 
   // set email
   const email = document.getElementById('email');

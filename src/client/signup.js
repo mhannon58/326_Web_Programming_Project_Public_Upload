@@ -12,7 +12,7 @@ registerButton.addEventListener("click", async function(event) {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   let doc = {
-      username: username,
+      user_name: username,
       email: email,
       password: password
       // createdPosts: [],
