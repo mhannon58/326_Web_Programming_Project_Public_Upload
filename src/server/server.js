@@ -2,6 +2,7 @@ import express from "express";
 import logger from "morgan";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import postRouter from "./routes/postsRouter.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Allow static file serving
 app.use(express.static(__dirname + '/client'));
+// Use the routes created for posts, stored neatly in it's own file in routes/posts.js
+app.use(postRouter);
 
 app.get('/', (req, res) => {
   res.redirect('home.html');
