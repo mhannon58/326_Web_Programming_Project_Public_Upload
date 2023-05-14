@@ -28,19 +28,8 @@ router.post("/posts", async (req, res) => {
   const { post_title, post_description, post_tags, profile_id, tokens, deadline } = req.body;
 
   try {
-    const result = await client.db("db").collection("posts").insertOne({
-      post_title: post_title,
-      post_description: post_description,
-      post_tags: post_tags, 
-      profile_id: profile_id, 
-      accept_id: null,
-      tokens: tokens,
-      deadline: deadline,
-      finished: false
-    });
-
     // check if profile has enough tokens and then subtract from balance
-    const profile = await client.db("db").collection("profiles").findOne(ObjectId(profile_id));
+    const profile = await client.db("db").collection("profiles").findOne(new ObjectId(profile_id));
 
     // profile not found
     if (!profile) {
@@ -55,7 +44,18 @@ router.post("/posts", async (req, res) => {
     }
 
     const update = { $set: { tokens: profile.tokens - tokens } };
-    await client.db("db").collection("profiles").updateOne(ObjectId(profile_id), update);
+    await client.db("db").collection("profiles").updateOne({ "_id": new ObjectId(profile_id) }, update);
+
+    const result = await client.db("db").collection("posts").insertOne({
+      post_title: post_title,
+      post_description: post_description,
+      post_tags: post_tags, 
+      profile_id: profile_id, 
+      accept_id: null,
+      tokens: tokens,
+      deadline: deadline,
+      finished: false
+    });
 
     console.log(`New listing created with the following id: ${result.insertedId}`);
     console.log(`Profile ${profile_id}'s new token amount is ${profile.tokens - tokens}`);
@@ -92,8 +92,6 @@ router.post("/profiles", async (req, res) => {
       tokens: 100,
       password: password
     });
-    
-
 
     console.log(`New profile created with the following id: ${result.insertedId}`);
     res.status(200).send(result.insertedId);
@@ -131,7 +129,7 @@ router.get("/posts", async (req, res) => {
 
 // GET request to return specific post
 router.get("/posts/:postID", async (req, res) => {
-  const post = await client.db("db").collection("posts").findOne(ObjectId(req.params.postID));
+  const post = await client.db("db").collection("posts").findOne(new ObjectId(req.params.postID));
 
   // post not found
   if (!post) {
@@ -144,7 +142,7 @@ router.get("/posts/:postID", async (req, res) => {
 
 // GET request to return specific profile
 router.get("/profiles/:profileID", async (req, res) => {
-  const profile = await client.db("db").collection("profiles").findOne(ObjectId(req.params.profileID));
+  const profile = await client.db("db").collection("profiles").findOne(new ObjectId(req.params.profileID));
 
   // profile not found
   if (!profile) {
@@ -170,14 +168,14 @@ router.get("/profiles/:email", async (req, res) => {
 
 // GET request to return all posts specific to profile
 router.get("/reviews/:revieweeID", async (req, res) => {
-  const data = await this.client.db("db").collection("reviews").find({ "reviewee": revieweeID }).toArray();
+  const data = await client.db("db").collection("reviews").find({ "reviewee": revieweeID }).toArray();
 
   res.status(200).send(data);
 });
 
 // GET request to return specific post
 router.get("/reviews/:reviewID", async (req, res) => {
-  const review = await client.db("db").collection("reviews").findOne(ObjectId(req.params.reviewID));
+  const review = await client.db("db").collection("reviews").findOne(new ObjectId(req.params.reviewID));
 
   // review not found
   if (!review) {
@@ -193,7 +191,7 @@ router.put("/postAccepted", async (req, res) => {
   const { post_id, accept_id } = req.body;
 
   try {
-    const post = await client.db("db").collection("posts").findOne(ObjectId(post_id));
+    const post = await client.db("db").collection("posts").findOne(new ObjectId(post_id));
 
     if (!post) {
       console.log(`Could not find post with id ${post_id}`);
@@ -217,7 +215,7 @@ router.put("/postAccepted", async (req, res) => {
 
     // update post
     const update = { $set: { accept_id: accept_id } };
-    await client.db("db").collection("posts").updateOne(ObjectId(post_id), update);
+    await client.db("db").collection("posts").updateOne({ "_id": new ObjectId(post_id) }, update);
 
     console.log(`Listing with id ${post_id} has been accepted by user ${accept_id}`);
     res.status(200).send({ status: "success" });
@@ -232,7 +230,7 @@ router.put("/postFinished", async (req, res) => {
   const { post_id } = req.body;
 
   try {
-    const post = await client.db("db").collection("posts").findOne(ObjectId(post_id));
+    const post = await client.db("db").collection("posts").findOne(new ObjectId(post_id));
 
     if (!post) {
       console.log(`Could not find post with id ${post_id}`);
@@ -250,7 +248,7 @@ router.put("/postFinished", async (req, res) => {
     // a person has accepted the post
     // transfer the tokens from user A to B
     if (post.accept_id) {
-      const user = await client.db("db").collection("profiles").findOne(ObjectId(post.accept_id));
+      const user = await client.db("db").collection("profiles").findOne(new ObjectId(post.accept_id));
 
       if (!user) {
         console.log(`User ${post.accept_id} not found. Could not mark post as finished.`);
@@ -261,16 +259,16 @@ router.put("/postFinished", async (req, res) => {
       console.log(`Mark post ${post_id} as finished`);
 
       const update = { $set: { finished: true } };
-      await client.db("db").collection("posts").updateOne(ObjectId(post_id), update);
+      await client.db("db").collection("posts").updateOne({ "_id": new ObjectId(post_id) }, update);
 
       update = { $set: { tokens: user.tokens + post.tokens } };
-      await client.db("db").collection("profiles").updateOne(ObjectId(post.accept_id), update);
+      await client.db("db").collection("profiles").updateOne({ "_id": new ObjectId(post.accept_id) }, update);
     }
 
     // noone accepted the post
     // return tokens to user
     else {
-      const user = await client.db("db").collection("profiles").findOne(ObjectId(post.profile_id));
+      const user = await client.db("db").collection("profiles").findOne(new ObjectId(post.profile_id));
 
       if (!user) {
         console.log(`User ${post.profile_id} not found. Could not mark post as finished.`);
@@ -281,10 +279,10 @@ router.put("/postFinished", async (req, res) => {
       console.log(`Mark post ${post_id} as finished`);
 
       const update = { $set: { finished: true } };
-      await client.db("db").collection("posts").updateOne(ObjectId(post_id), update);
+      await client.db("db").collection("posts").updateOne({ "_id": new ObjectId(post_id) }, update);
 
       update = { $set: { tokens: user.tokens + post.tokens } };
-      await client.db("db").collection("profiles").updateOne(ObjectId(post.profile_id), update);
+      await client.db("db").collection("profiles").updateOne({ "_id": new ObjectId(post.profile_id) }, update);
     }
 
     res.status(200).send({ status: "success" });
@@ -293,5 +291,7 @@ router.put("/postFinished", async (req, res) => {
     res.status(500).send(err);
   }
 });
+
+// TODO add delete to router
 
 export default router;
