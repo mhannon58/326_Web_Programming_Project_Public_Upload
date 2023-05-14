@@ -3,13 +3,21 @@ import { initNavbar } from './navbar.js';
 
 initNavbar();
 
-let historyObj = new Crud('Posts');
+// let historyObj = new Crud('Posts');
 
-async function getAllPosts()
+async function getPosts(flag)
 {
     try
     {
-        const docs = await historyObj.getAllDocs();
+        let route = '';
+        if(flag === 0)
+            route = "/posts/posted/" + localStorage.getItem("curr_user");
+        else
+            route = "/posts/accepted/" + localStorage.getItem("curr_user");
+        const response = await fetch(route, {
+        method: 'GET'
+        });
+        let docs = await response.json();
         return docs;
     }
     catch(error)
@@ -40,7 +48,7 @@ function addChildren(element, posts)
 
         // will add link
         var title = document.createElement("a")
-        title.innerHTML = elem.doc.post_title
+        title.innerHTML = elem.post_title
 
         // add stuff here
         var dateDiv = document.createElement("div");
@@ -50,7 +58,7 @@ function addChildren(element, posts)
         datePara.classList.add("text-muted")
         datePara.classList.add("mb-0")
         datePara.classList.add("float-right")
-        datePara.innerHTML = elem.doc.deadline
+        datePara.innerHTML = elem.deadline
 
         var detailsDiv = document.createElement("div");
         detailsDiv.classList.add("row-mb-4")
@@ -60,13 +68,13 @@ function addChildren(element, posts)
 
         var tokensPara = document.createElement("p")
         tokensPara.classList.add("mb-0")
-        tokensPara.innerHTML = elem.doc.tokens.toString() + " token(s)"
+        tokensPara.innerHTML = elem.tokens.toString() + " token(s)"
         // stuff added above
 
         var desc = document.createElement("p")
         desc.classList.add("mb-0")
         desc.classList.add("doc-desc")
-        desc.innerHTML = elem.doc.post_description
+        desc.innerHTML = elem.post_description
 
         firstDiv.appendChild(cardBody)
         cardBody.appendChild(firstRow)
@@ -87,9 +95,10 @@ function addChildren(element, posts)
 window.addEventListener("load", async function() {
     try
     {
-        let posts_dict = await getAllPosts();
-        let posts = posts_dict.rows;
-        addChildren(document.getElementById("dynamic-start"), posts);
+        let postedPosts = await getPosts(0);
+        let acceptedPosts = await getPosts(1);
+        addChildren(document.getElementById("posted-start"), postedPosts);
+        addChildren(document.getElementById("accepted-start"), acceptedPosts);
     }
     catch(error)
     {
