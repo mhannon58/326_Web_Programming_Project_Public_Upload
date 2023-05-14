@@ -99,8 +99,13 @@ async function setup() {
   let posts = [];
 
   async function refresh(){
-      let docs = await getAllPosts();
-      return docs.rows.map(d=>d.doc);
+    let postedRoute = "/posts/posted/" + localStorage.getItem("curr_user");
+    console.log(postedRoute);
+    const postedResp = await fetch(postedRoute, {
+      method: 'GET'
+    });
+    let docs = await postedResp.json();
+    return docs;
   }
 
   posts = await refresh();
