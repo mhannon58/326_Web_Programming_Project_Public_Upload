@@ -21,6 +21,14 @@ async function refresh(){
     //return docs.rows.map(d=>d.doc);
 }
 
+async function getUser(id){
+    let response = await fetch(`/profiles/${id}`, {
+        method: 'GET'
+    });
+    let user = await response.json();
+    return await user.user_name;
+}
+
 // Dynamically create listing elements given a list of posts
 function displayListings(posts, container){
     container.innerHTML = '';
@@ -29,7 +37,7 @@ function displayListings(posts, container){
         message.innerText = 'REFRESH THE PAGE';
         container.append(message);
     } else {
-    posts.filter(x=>!x.finished).forEach(post => {
+    posts.filter(x=>!x.finished).forEach(async post => {
         const listing = document.createElement('div');
         listing.classList.add('container', 'border', 'py-3', 'my-3');
 
@@ -78,7 +86,13 @@ function displayListings(posts, container){
 
         const user = document.createElement('p');
         user.setAttribute('id', 'name');
-        user.innerText = `User # ${post.profile_id}`; // placeholder username, eventually links to profile
+        const userlink = document.createElement('a');
+        const username = await getUser(post.profile_id);
+        userlink.innerText = "@"+username; 
+        //userlink.setAttribute('href', `profile/username/${username}`);
+        userlink.setAttribute('href', `profile.html`);
+        user.append(userlink);
+
 
         const tokens = document.createElement('p');
         tokens.classList.add('mb-0');
