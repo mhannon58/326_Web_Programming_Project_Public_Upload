@@ -1,10 +1,21 @@
 import express from "express";
-
+import auth from "auth.js"
 const router = express.Router();
 
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
 const uri = "mongodb+srv://team-44:123password123@team-44.3xrj2rq.mongodb.net/?retryWrites=true&w=majority";
+
+//Taken from passport lecture
+function checkLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    // If we are authenticated, run the next routfe.
+    next();
+  } else {
+    // Otherwise, redirect to the login page.
+    res.redirect('/login');
+  }
+}
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -227,6 +238,15 @@ router.put("/postAccepted", async (req, res) => {
   }
 });
 
+router.post("/login",
+
+  auth.authenticate('local', {
+
+    successRedirect: '/search',
+    failureRedirect: 'login',
+  })
+);
+
 // PUT request to mark post as finished 
 router.put("/postFinished", async (req, res) => {
   const { post_id } = req.body;
@@ -293,5 +313,6 @@ router.put("/postFinished", async (req, res) => {
     res.status(500).send(err);
   }
 });
+
 
 export default router;
