@@ -129,27 +129,37 @@ router.get("/posts", async (req, res) => {
 
 // GET request to return specific post
 router.get("/posts/:postID", async (req, res) => {
-  const post = await client.db("db").collection("posts").findOne(new ObjectId(req.params.postID));
+  try {
+    const post = await client.db("db").collection("posts").findOne(new ObjectId(req.params.postID));
 
-  // post not found
-  if (!post) {
-    res.status(500).send("Post not found.");
-  }
-  else {
-    res.status(200).send(post);
+    // post not found
+    if (!post) {
+      res.status(500).send("Post not found.");
+    }
+    else {
+      res.status(200).send(post);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
   }
 });
 
 // GET request to return specific profile
 router.get("/profiles/:profileID", async (req, res) => {
-  const profile = await client.db("db").collection("profiles").findOne(new ObjectId(req.params.profileID));
+  try {
+    const profile = await client.db("db").collection("profiles").findOne(new ObjectId(req.params.profileID));
 
-  // profile not found
-  if (!profile) {
-    res.status(500).send("Profile not found.");
-  }
-  else {
-    res.status(200).send(profile);
+    // profile not found
+    if (!profile) {
+      res.status(500).send("Profile not found.");
+    }
+    else {
+      res.status(200).send(profile);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
   }
 });
 
@@ -188,14 +198,19 @@ router.get("/reviews/:revieweeID", async (req, res) => {
 
 // GET request to return specific post
 router.get("/reviews/review/:reviewID", async (req, res) => {
-  const review = await client.db("db").collection("reviews").findOne(new ObjectId(req.params.reviewID));
+  try {
+    const review = await client.db("db").collection("reviews").findOne(new ObjectId(req.params.reviewID));
 
-  // review not found
-  if (!review) {
-    res.status(500).send("Review not found.");
-  }
-  else {
-    res.status(200).send(review);
+    // review not found
+    if (!review) {
+      res.status(500).send("Review not found.");
+    }
+    else {
+      res.status(200).send(review);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
   }
 });
 
