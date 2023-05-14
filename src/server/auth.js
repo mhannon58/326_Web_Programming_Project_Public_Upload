@@ -1,7 +1,5 @@
 import passport from 'passport';
 import passportLocal from 'passport-local';
-import users from './users.js';
-import router from "postsRouter.js"
 const { Strategy } = passportLocal;
 
 
@@ -35,13 +33,13 @@ passport.deserializeUser((uid, done) => {
     done(null, uid);
   });
   
-export default {
+  export default {
     configure: (app) => {
-        app.use(passport.initialize());
-        app.use(passport.session());
+      app.use(passport.initialize());
+      app.use(passport.session());
     },
-    
+  
     authenticate: (domain, where) => {
-        return passport.authenticate(domain, where);
+      return passport.authenticate(domain, where);
     },
-};
+  };

@@ -1,10 +1,13 @@
 import express from "express";
-import auth from "auth.js"
+import auth from "../auth.js"
 const router = express.Router();
 
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
 const uri = "mongodb+srv://team-44:123password123@team-44.3xrj2rq.mongodb.net/?retryWrites=true&w=majority";
+
+auth.configure(router)
+
 
 //Taken from passport lecture
 function checkLoggedIn(req, res, next) {
@@ -240,7 +243,7 @@ router.put("/postAccepted", async (req, res) => {
 
 router.post("/login",
 
-  auth.authenticate('local', {
+  authenticate('local', {
 
     successRedirect: '/search',
     failureRedirect: 'login',
