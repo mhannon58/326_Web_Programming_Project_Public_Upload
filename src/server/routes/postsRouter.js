@@ -28,17 +28,6 @@ router.post("/posts", async (req, res) => {
   const { post_title, post_description, post_tags, profile_id, tokens, deadline } = req.body;
 
   try {
-    const result = await client.db("db").collection("posts").insertOne({
-      post_title: post_title,
-      post_description: post_description,
-      post_tags: post_tags, 
-      profile_id: profile_id, 
-      accept_id: null,
-      tokens: tokens,
-      deadline: deadline,
-      finished: false
-    });
-
     // check if profile has enough tokens and then subtract from balance
     const profile = await client.db("db").collection("profiles").findOne(new ObjectId(profile_id));
 
@@ -56,6 +45,17 @@ router.post("/posts", async (req, res) => {
 
     const update = { $set: { tokens: profile.tokens - tokens } };
     await client.db("db").collection("profiles").updateOne({ "_id": new ObjectId(profile_id) }, update);
+
+    const result = await client.db("db").collection("posts").insertOne({
+      post_title: post_title,
+      post_description: post_description,
+      post_tags: post_tags, 
+      profile_id: profile_id, 
+      accept_id: null,
+      tokens: tokens,
+      deadline: deadline,
+      finished: false
+    });
 
     console.log(`New listing created with the following id: ${result.insertedId}`);
     console.log(`Profile ${profile_id}'s new token amount is ${profile.tokens - tokens}`);
