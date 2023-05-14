@@ -300,7 +300,7 @@ router.put("/postFinished", async (req, res) => {
 
       console.log(`Mark post ${post_id} as finished`);
 
-      const update = { $set: { finished: true } };
+      let update = { $set: { finished: true } };
       await client.db("db").collection("posts").updateOne({ "_id": new ObjectId(post_id) }, update);
 
       update = { $set: { tokens: user.tokens + post.tokens } };
@@ -320,7 +320,7 @@ router.put("/postFinished", async (req, res) => {
 
       console.log(`Mark post ${post_id} as finished`);
 
-      const update = { $set: { finished: true } };
+      let update = { $set: { finished: true } };
       await client.db("db").collection("posts").updateOne({ "_id": new ObjectId(post_id) }, update);
 
       update = { $set: { tokens: user.tokens + post.tokens } };
@@ -335,5 +335,15 @@ router.put("/postFinished", async (req, res) => {
 });
 
 // TODO add delete to router
+router.delete("/deleteReview", async (req, res) => {
+  const { reviewID } = req.body;
+
+  try {
+    await client.db("db").collection("review").deleteOne({"_id": new ObjectId(reviewID)});
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
+});
 
 export default router;
