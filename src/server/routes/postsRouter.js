@@ -124,7 +124,7 @@ router.post("/reviews", async (req, res) => {
 
 // GET request to return all posts
 router.get("/posts", async (req, res) => {
-  const data = await this.client.db("db").collection("posts").find().toArray();
+  const data = await client.db("db").collection("posts").find().toArray();
 
   res.status(200).send(data);
 });

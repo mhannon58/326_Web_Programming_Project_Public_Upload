@@ -93,7 +93,20 @@ window.addEventListener("load", async function() {
   {
     let username = localStorage.getItem("curr_user")
     let post_id = localStorage.getItem("curr_post_id")
-    let desired_post = await readPost(post_id);
+    // let desired_post = await readPost(post_id);
+    let response = await fetch('/posts', {
+      method: 'GET'
+    });
+    let posts = await response.json();
+    let desired_post = null;
+    for(let post of posts)
+    {
+      if(post["_id"] === post_id)
+      {
+        desired_post = post;
+        break;
+      }
+    }
     console.log(desired_post)
     let title = desired_post.post_title;
     let desc = desired_post.post_description

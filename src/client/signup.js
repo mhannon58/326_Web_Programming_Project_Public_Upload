@@ -14,12 +14,11 @@ registerButton.addEventListener("click", async function(event) {
   let doc = {
       username: username,
       email: email,
-      tokens: 0,
       password: password
       // createdPosts: [],
       // acceptedPosts: [],
       // reviews: [],
-  }
+  };
 
   // this should send a POST request to postsRouter.js
   const response = await fetch("/profiles", {

@@ -10,9 +10,12 @@ const resultsDiv = document.getElementById('results');
 let posts = [];
 
 async function refresh(){
-    return await fetch('/posts', {
+    let response = await fetch('/posts', {
         method: 'GET'
     });
+    let posts = await response.json();
+    console.log(posts);
+    return posts;
     //PouchDB
     //let docs = await getAllPosts();
     //return docs.rows.map(d=>d.doc);
@@ -66,7 +69,7 @@ function displayListings(posts, container){
         const view = document.createElement('button');
         // view.setAttribute('onClick', 'window.location.href="./listing.html"'); // button has no specified path
         view.addEventListener("click", function() {
-            localStorage.setItem("curr_post_id", post._id)
+            localStorage.setItem("curr_post_id", post["_id"]["$oid"]);
             window.location.href="./listing.html"
         });
         view.innerText = 'View';
