@@ -20,10 +20,14 @@
   },
   "homepage": "https://github.com/umass-cs-326-s23/326-project-repo-team-44#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "mongodb": "^5.4.0",
+    "mongoose": "^6.10.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
+    "passport-http-bearer": "^1.0.1",
+    "passport-local-mongoose": "^8.0.0",
     "pouchdb": "^8.0.1"
   },
   "type": "module"
