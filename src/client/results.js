@@ -77,7 +77,8 @@ async function displayListings(posts, container){
             const view = document.createElement('button');
             // view.setAttribute('onClick', 'window.location.href="./listing.html"'); // button has no specified path
             view.addEventListener("click", function() {
-                localStorage.setItem("curr_post_id", post["_id"]["$oid"]);
+                localStorage.setItem("curr_post_id", post["_id"]);
+                console.log(post["_id"])
                 window.location.href="./listing.html"
             });
             view.innerText = 'View';
