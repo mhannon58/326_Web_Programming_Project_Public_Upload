@@ -141,17 +141,22 @@ Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> 
     const field = option.innerText;
     let listings = grab();
     if(field === 'Deadline'){
-        listings = listings.sort((a,b) => new Date(a.deadline) - new Date(b.deadline));
+        listings = listings.sort((a,b) => 
+            new Date(a.deadline.replace(/-/g, "/")) - new Date(b.deadline.replace(/-/g, "/"))
+        );
+        console.log("2021-201-2".replace(/-/g, "/"))
     }
     else if(field === 'A-Z'){
         listings = listings.sort((a,b) => 
-        a.post_title.toLowerCase() > b.post_title.toLowerCase() ? 1 
-        : a.post_title.toLowerCase() < b.post_title.toLowerCase() ? -1 : 0);
+            a.post_title.toLowerCase() > b.post_title.toLowerCase() ? 1 
+            : a.post_title.toLowerCase() < b.post_title.toLowerCase() ? -1 : 0
+        );
     }
     else if(field === 'Z-A'){
         listings = listings.sort((a,b) => 
-        a.post_title.toLowerCase() < b.post_title.toLowerCase() ? 1 
-        : a.post_title.toLowerCase() > b.post_title.toLowerCase() ? -1 : 0);
+            a.post_title.toLowerCase() < b.post_title.toLowerCase() ? 1 
+            : a.post_title.toLowerCase() > b.post_title.toLowerCase() ? -1 : 0
+        );
     }
     else if(field === 'Tokens'){
         listings = listings.sort((a,b) => b.tokens - a.tokens);
