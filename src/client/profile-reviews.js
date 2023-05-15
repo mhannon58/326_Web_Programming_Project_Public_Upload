@@ -1,4 +1,5 @@
 import { loadProfiles, loadPosts } from "./load.js";
+import {otherProfileName} from "./profile.js"
 
 async function setup() {
   const profiles = await loadProfiles();
@@ -22,6 +23,7 @@ try {
   // get profile document number 1
   // aka jeremias
   setup();
+  console.log(otherProfileName)
 
 } catch (err) {
   console.log(err);

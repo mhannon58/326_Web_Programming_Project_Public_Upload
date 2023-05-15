@@ -9,15 +9,15 @@ import { initNavbar } from "./navbar.js";
 
 initNavbar();
 
-const signupObj = new Crud('signup_db')
+//const signupObj = new Crud('signup_db')
 
-CRUD_reviews._init_()
+//CRUD_reviews._init_()
 
 const postTitle = document.getElementById('title');
 const postContent = document.getElementById('description');
 const postButton = document.getElementById('post');
 
-postButton.addEventListener('click', () => {
+postButton.addEventListener('click', async () => {
     const title = postTitle.value;
     const desc = postContent.value;
 
@@ -31,8 +31,6 @@ postButton.addEventListener('click', () => {
     else {
         // create post here
         alert(`${title} ${desc}`);
-      
-        CRUD_reviews.getNextId().then(async (id) => {
             // const id_string = "review" + id.toString();
 
             // let username = localStorage.getItem("curr_user")
@@ -45,23 +43,22 @@ postButton.addEventListener('click', () => {
             // console.log("The id we are about to post is", id);
             // CRUD_reviews.createReview(id_string, title, desc);
 
-            let pack = {
-                title: title,
-                description: desc,
-                reviewer: localStorage.getItem("curr_user"),
-                reviewee: otherProfileName
-            }
+        let pack = {
+            title: title,
+            description: desc,
+            reviewer: localStorage.getItem("curr_user"),
+            reviewee: otherProfileName
+        }
 
-            await fetch("/reviews", {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(pack)
-              });
+        await fetch("/reviews", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pack)
         });
 
-        // window.location.replace("profile-reviews.html")
+        window.location.replace("profile-reviews.html")
         
     }
 });

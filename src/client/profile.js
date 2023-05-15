@@ -80,6 +80,8 @@ async function setup() {
   reviews.addEventListener("click", () => {
     let url = window.location.href;
     otherProfileName = url.split("/")[2].substring(1);
+    console.log(otherProfileName)
+    console.log("justprinted")
     window.location.href = "./profile-reviews.html";
   });
   
