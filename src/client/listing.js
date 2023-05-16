@@ -101,7 +101,7 @@ window.addEventListener("load", async function() {
     let desired_post = null;
     for(let post of posts)
     {
-      if(post["_id"] === post_id)
+      if(post._id === post_id)
       {
         desired_post = post;
         break;

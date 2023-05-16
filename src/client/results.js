@@ -77,8 +77,8 @@ async function displayListings(posts, container){
             const view = document.createElement('button');
             // view.setAttribute('onClick', 'window.location.href="./listing.html"'); // button has no specified path
             view.addEventListener("click", function() {
-                localStorage.setItem("curr_post_id", post["_id"]["$oid"]);
-                window.location.href="./listing.html"
+                localStorage.setItem("curr_post_id", post._id);
+                window.location.href=`/listing.html`;
             });
             view.innerText = 'View';
             view.classList.add('btn', 'btn-primary');
@@ -142,9 +142,8 @@ Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> 
     let listings = grab();
     if(field === 'Deadline'){
         listings = listings.sort((a,b) => 
-            new Date(a.deadline.replace(/-/g, "/")) - new Date(b.deadline.replace(/-/g, "/"))
+            new Date(a.deadline.replace(/-/g, "/")) - new Date(b.deadline.replace(/-/g, "/")) // supports safari
         );
-        console.log("2021-201-2".replace(/-/g, "/"))
     }
     else if(field === 'A-Z'){
         listings = listings.sort((a,b) => 
