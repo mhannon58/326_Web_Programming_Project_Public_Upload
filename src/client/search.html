@@ -19,7 +19,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <form class="d-flex mx-auto">
-                    <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
                     <input type="button" id="search-btn" class="btn btn-outline-success" value="Search"></input>
                 </form>
                 <ul class="navbar-nav">
@@ -29,20 +29,25 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Filter
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" id="filter" aria-labelledby="filterDropdown">
-                                <select id="tags" class="select bg-dark text-light" filter="true" multiple>
-                                <option value="1">School/tutor</option>
-                                <option value="2">Labor/move</option>
-                                <option value="3">Programming/tech</option>
-                                <option value="4">Lifestyle</option>
-                                <option value="5">Video/photo</option>
-                                <option value="6">Writing/translation</option>
-                                <option value="7">Rideshare</option>
-                                <option value="8">Housing</option>
-                                <option value="9">Music/audio</option>
-                                <option value="10">Business</option>
-                                <option value="11">Graphic/design</option>
-                                </select>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark scrollable-menu" onclick="event.stopPropagation()" role="menu" id="filter" aria-labelledby="filterDropdown">
+                                <li><input id="tag-search" class="me-2 ms-2 padding-1" type="text" autocomplete="off" placeholder="Tag" aria-label="Search"></li>
+                                <!-- <li><a class="dropdown-item filter" href="#">Clear</a></li>
+                                <div class="dropdown-divider"></div> -->
+                                <li><a class="dropdown-item tag" href="#">School</a></li>
+                                <li><a class="dropdown-item tag" href="#">Labor</a></li>
+                                <li><a class="dropdown-item tag" href="#">Technology</a></li>
+                                <li><a class="dropdown-item tag" href="#">Video</a></li>
+                                <li><a class="dropdown-item tag" href="#">Photography</a></li>
+                                <li><a class="dropdown-item tag" href="#">Graphic Design</a></li>
+                                <li><a class="dropdown-item tag" href="#">Writing</a></li>
+                                <li><a class="dropdown-item tag" href="#">Translation</a></li>
+                                <li><a class="dropdown-item tag" href="#">Rideshare</a></li>
+                                <li><a class="dropdown-item tag" href="#">Housing</a></li>
+                                <li><a class="dropdown-item tag" href="#">Music</a></li>
+                                <li><a class="dropdown-item tag" href="#">Audio</a></li>
+                                <li><a class="dropdown-item tag" href="#">Business</a></li>
+                                <li><a class="dropdown-item tag" href="#">Lifestyle</a></li>
+                                </form>
                             </ul>
                         </div>
                     </li>

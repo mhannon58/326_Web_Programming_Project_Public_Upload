@@ -1,11 +1,10 @@
-//import { getAllPosts, _init_ } from "./postcrud.js";
-
 const searchText = document.getElementById('search');
 const searchButton = document.getElementById('search-btn');
 const tagSearch = document.getElementById('tag-search');
-const tags = document.getElementById('tag');
+const tags = document.getElementsByClassName('tag');
 const sortOptions = document.getElementsByClassName('sort');
 const resultsDiv = document.getElementById('results');
+
 
 let posts = [];
 
@@ -15,10 +14,10 @@ async function refresh(){
     });
     let posts = await response.json();
     return posts;
-    //PouchDB
-    //let docs = await getAllPosts();
-    //return docs.rows.map(d=>d.doc);
 }
+
+posts = await refresh();
+let curr_posts = posts;
 
 async function getUser(id){
     const response = await fetch(`/profiles/${id}`, {method: 'GET'});
@@ -27,14 +26,14 @@ async function getUser(id){
 }
 
 // Dynamically create listing elements given a list of posts
-async function displayListings(posts, container){
+async function displayListings(container){
     container.innerHTML = '';
-    if(posts.length <= 0) {
+    if(curr_posts.length <= 0) {
         const message = document.createElement('h5');
-        message.innerText = 'REFRESH THE PAGE';
+        message.innerText = 'NO RESULTS; REFRESH THE PAGE';
         container.append(message);
     } else {
-        const unacceptedPosts = posts.filter(x=>!x.finished);
+        const unacceptedPosts = curr_posts.filter(x=>!x.finished);
         for(let i = 0; i < unacceptedPosts.length; i++){
             const post = unacceptedPosts[i];
 
@@ -112,9 +111,6 @@ async function displayListings(posts, container){
     }
 }
 
-posts = await refresh();
-displayListings(posts, resultsDiv); // display mockdata
-
 function grab(){
     let searchTerm = searchText.value.toLowerCase();
     return posts.filter(post => {
@@ -126,15 +122,47 @@ function grab(){
 
 // Update listings on search
 searchButton.addEventListener('click', ()=>{
-    let searchTerm = searchText.value.toLowerCase();
-    displayListings(grab(), resultsDiv);
+    curr_posts = grab();
+    displayListings(resultsDiv);
 });
 
+// Tag search
+tagSearch.addEventListener('input', () => {
+    for(let t of tags){
+        if(!t.innerText.toUpperCase().includes(tagSearch.value.toUpperCase())){
+            t.classList.add('d-none');
+        } else {
+            t.classList.remove('d-none');
+        }
+    }
+});
+
+
 // Filter listings based on selected tags
-// TODO
+Array.from(tags).forEach(tagElement => tagElement.addEventListener('click', () => {
+    if(tagElement.classList.value.includes('active')) { 
+        tagElement.classList.remove('active');
+        const remainingActive = Array.from(document.getElementsByClassName('active'));
+        curr_posts = grab();
+        if(remainingActive.length > 0) {
+            curr_posts = curr_posts.filter(post => {
+                for(let t of remainingActive) {
+                    if(post.post_tags.join(' ').includes(t.innerText.toLowerCase())){
+                        return true
+                    }
+                }
+                return false
+            });
+        } 
+    } else {
+        tagElement.classList.add('active');
+        curr_posts = curr_posts.filter(post => post.post_tags.includes(tagElement.innerText.toLowerCase()));
+    }
+    displayListings(resultsDiv);
+}));
 
 // Sort listings
-Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> {
+Array.from(sortOptions).forEach(option => option.addEventListener('click', () => {
     //let active = document.getElementsByClassName('active');
     //if(active.length > 0){ active[0].classList.remove('active'); }
     //option.classList.add('active');
@@ -162,3 +190,5 @@ Array.from(sortOptions).forEach(option => option.addEventListener('click', ()=> 
     }
     displayListings(listings, resultsDiv);
 }));
+
+displayListings(resultsDiv);
