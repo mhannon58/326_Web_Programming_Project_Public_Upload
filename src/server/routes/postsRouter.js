@@ -142,6 +142,7 @@ router.get("/posts/accepted/:profileID", async (req, res) => {
 });
 
 // GET request to return specific post
+/*
 router.get("/posts/:postID", async (req, res) => {
   try {
     const post = await client.db("db").collection("posts").findOne(new ObjectId(req.params.postID));
@@ -152,6 +153,26 @@ router.get("/posts/:postID", async (req, res) => {
     }
     else {
       res.status(200).send(post);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
+});
+*/
+
+// GET request to return specific post
+router.get("/posts/:postID", async (req, res) => {
+  try {
+    const post = await client.db("db").collection("posts").findOne(new ObjectId(req.params.postID));
+
+    // post not found
+    if (!post) {
+      res.status(500).send("Post not found.");
+    }
+    else {
+      res.render("listing.ejs", post);
+
     }
   } catch (err) {
     console.error(err);
