@@ -47,7 +47,7 @@ postButton.addEventListener('click', async () => {
             title: title,
             description: desc,
             reviewer: localStorage.getItem("curr_user"),
-            reviewee: otherProfileName
+            reviewee: localStorage.getItem("profile_view_id")
         }
 
         await fetch("/reviews", {
@@ -60,6 +60,7 @@ postButton.addEventListener('click', async () => {
 
         window.location.replace("profile-reviews.html")
         
+        console.log(pack)
     }
 });
 

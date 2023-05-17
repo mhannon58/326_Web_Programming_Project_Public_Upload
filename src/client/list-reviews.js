@@ -39,10 +39,10 @@ function populateReview(element, title_text, desc_text){
     element.appendChild(firstDiv)
     cardBody.appendChild(desc)
 }
-/*
+
 const reviewLoc = document.getElementById('reviews')
 const reviewButton = document.getElementById('review-button')
-
+/*
 CRUD_reviews.getAllReviews().then((reviews) =>{
     console.log((reviews.rows))
     for( let r of reviews.rows){
@@ -52,19 +52,19 @@ CRUD_reviews.getAllReviews().then((reviews) =>{
 })
 */
 
-let pack = {
-    title: title,
-    description: desc,
-    reviewer: localStorage.getItem("curr_user"),
-    reviewee: otherProfileName
-}
 
-await fetch("/reviews/{}", {
-    method: 'POST',
+let reviewee = localStorage.getItem("profile_view_id")
+
+let response = await fetch("/reviews/"+ reviewee, {
+    method: 'GET',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify(pack)
+    //body: JSON.stringify(pack)
 });
 
-window.location.replace("profile-reviews.html")
+response = await response.json()
+for(let e of response){
+    populateReview(reviewLoc, e.title, e.description)
+}
+//window.location.replace("profile-reviews.html")
