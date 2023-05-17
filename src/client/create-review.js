@@ -1,17 +1,6 @@
-import * as CRUD_reviews from "./reviewcrud.js"
+
 import { otherProfileName } from "./profile.js"
-let postdb = new PouchDB('Posts')
-let generaldb = new PouchDB('General')
-let reviewdb = new PouchDB('Reviews')
 
-import { Crud } from './pouchdb.js';
-import { initNavbar } from "./navbar.js";
-
-initNavbar();
-
-//const signupObj = new Crud('signup_db')
-
-//CRUD_reviews._init_()
 
 const postTitle = document.getElementById('title');
 const postContent = document.getElementById('description');
@@ -31,17 +20,6 @@ postButton.addEventListener('click', async () => {
     else {
         // create post here
         alert(`${title} ${desc}`);
-            // const id_string = "review" + id.toString();
-
-            // let username = localStorage.getItem("curr_user")
-
-            // let userData = await signupObj.readDoc(username);
-            // userData.reviews.push(id_string);
-            // signupObj.updateDoc(username, { reviews: userData.reviews })
-            // userData = await signupObj.readDoc(username);
-
-            // console.log("The id we are about to post is", id);
-            // CRUD_reviews.createReview(id_string, title, desc);
 
         let pack = {
             title: title,
@@ -50,6 +28,7 @@ postButton.addEventListener('click', async () => {
             reviewee: localStorage.getItem("profile_view_id")
         }
 
+        //Send the review to database
         await fetch("/reviews", {
             method: 'POST',
             headers: {
@@ -63,6 +42,4 @@ postButton.addEventListener('click', async () => {
         console.log(pack)
     }
 });
-
-// TODO: add save button functionality
 

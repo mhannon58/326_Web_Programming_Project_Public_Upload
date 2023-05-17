@@ -1,5 +1,6 @@
 const acceptButton = document.getElementById('post');
 
+
 acceptButton.addEventListener('click', async () => {
   const path = window.location.pathname;
   const post_id = path.substring(path.lastIndexOf('/')+1);

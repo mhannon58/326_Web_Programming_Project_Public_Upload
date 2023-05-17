@@ -1,17 +1,19 @@
 import { Crud } from './pouchdb.js';
 
 // connects to existing user database
-let loginObj = new Crud('signup_db');
-let userData = null;
+
+//Establish login button
 
 let loginButton = document.getElementById("login-button");
 loginButton.addEventListener("click", async function(event) {
   // will make sure of its usage later
   event.preventDefault();
   
+  //Get username and password
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
   
+  //Fetch to server
   let route = "/profiles/username/" + username;
   const response = await fetch(route, {
     method: 'GET'
