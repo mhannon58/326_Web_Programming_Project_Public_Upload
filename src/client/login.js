@@ -10,8 +10,23 @@ loginButton.addEventListener("click", async function(event) {
   event.preventDefault();
   
   let username = document.getElementById("username").value;
-  userData = await loginObj.readDoc(username);
-
-  window.location.replace("search.html")
+  let password = document.getElementById("password").value;
   
+  let route = "/profiles/username/" + username;
+  const response = await fetch(route, {
+    method: 'GET'
+  });
+  const profile = await response.json();
+  console.log(profile);
+
+  if(password === profile.password)
+  {
+    localStorage.setItem("curr_user", profile._id)
+    console.log(localStorage.getItem("curr_user"))
+    window.location.replace("search.html");
+  }
+  else
+  {
+    alert("Incorrect password, please try again!");
+  }
 });
