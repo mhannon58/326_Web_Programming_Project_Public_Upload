@@ -1,7 +1,7 @@
 // TODO how to determine if user is logged in or not???
 function initNavbar() {
     const searchField = document.getElementById('search-field');
-    const searchButton = document.getElementById('search-button');
+    const searchButton = document.getElementById('search-btn');
     const profileIcon = document.getElementById('profile');
 
     // TODO implement search functionality
@@ -35,4 +35,4 @@ function initNavbar() {
     });
 }
 
-export { initNavbar };
+initNavbar();

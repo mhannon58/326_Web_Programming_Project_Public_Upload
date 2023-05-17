@@ -1,8 +1,5 @@
 import { loadProfiles, loadPosts } from "./load.js";
 import { getAllPosts } from "./postcrud.js";
-import { initNavbar } from "./navbar.js";
-
-initNavbar();
 
 export let otherProfileName = '';
 

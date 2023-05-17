@@ -1,16 +1,14 @@
-<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<base target="_parent">
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-<!-- THIS IS JUST A TEMPLATE. NOT USED BECAUSE IFRAME DOES NOT WORK. -->
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">OddJobs</a>
-    <form class="d-flex">
-      <input id="search-field" class="form-control me-2 mt-2" type="search" placeholder="Search" aria-label="Search">
-      <button id="search-button" class="btn btn-outline-success mt-2" type="button">Search</button>
+    <a class="navbar-brand" href="/home.html">OddJobs</a>
+    <form class="d-flex my-auto mx-auto">
+      <input id="search-field" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
+      <input type="button" id="search-btn" class="btn btn-outline-success" value="Search"></input>
     </form>
-    <img id="profile" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 20px;">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" width="30" height="30"
+      class="d-inline-block align-text-top rounded-circle" alt="Profile Icon" id="profile">
   </div>
 </nav>
