@@ -5,6 +5,7 @@
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
     <script type="module" src="login.js" defer></script>
+    <link href="/login.css" rel="stylesheet" type="text/css" />
     
     </head>
     
@@ -17,7 +18,7 @@
     
         <main class="form-signin w-400 m-auto">
             <form>
-              <img class="mb-4" src="../../docs/ui-design/images/Logo for website.jpg" alt="" width="140" height="125">
+              <img class="mb-4" id = "logo" src="./images/logo.png" alt="" width="200" height="200">
               <h1 class="h3 mb-3 fw-normal">Login</h1>
                     <div class="d-flex justify-content-center">
                         <div class="form-floating">
@@ -25,7 +26,6 @@
                         <label for="floatingInput">Username</label>
                         </div>
                     </div>
-    
                     <div class="d-flex justify-content-center">
                         <div class="form-floating">
                         <input type="password" class="form-control" id="password" placeholder="Password">
