@@ -47,10 +47,7 @@ async function displayListings(container){
         message.setAttribute('id', 'no-result');
         container.append(message);
     } else {
-        const unacceptedPosts = curr_posts.filter(x=>!x.finished);
-        for(let i = 0; i < unacceptedPosts.length; i++){
-            const post = unacceptedPosts[i];
-
+        for(const post of curr_posts){
             const listing = document.createElement('div');
             listing.classList.add('container', 'border', 'py-3', 'my-3');
 
@@ -153,18 +150,17 @@ Array.from(tags).forEach(tagElement => tagElement.addEventListener('click', () =
     if(tagElement.classList.value.includes('active')) { 
         tagElement.classList.remove('active');
         const remainingActive = Array.from(document.getElementsByClassName('active'));
-        curr_posts = grab('');
+        curr_posts = grab(getQuery());
         if(remainingActive.length > 0) {
             curr_posts = curr_posts.filter(post => {
                 for(let t of remainingActive) {
-                    console.log(t);
-                    if(post.post_tags.toLowerCase().includes(t.innerText.toLowerCase())){
-                        return true
+                    if(!post.post_tags.toLowerCase().includes(t.innerText.toLowerCase())){
+                        return false;
                     }
                 }
-                return false
+                return true;
             });
-        } 
+        }
     } else {
         tagElement.classList.add('active');
         curr_posts = curr_posts.filter(post => post.post_tags.toLowerCase().includes(tagElement.innerText.toLowerCase()));
@@ -200,7 +196,7 @@ Array.from(sortOptions).forEach(option => option.addEventListener('click', () =>
 
 
 posts = await refresh();
-let query = window.location.search.substring(1);
-let curr_posts = grab(query);
+const getQuery = () => window.location.search.substring(1);
+let curr_posts = grab(getQuery());
 
 displayListings(resultsDiv);
