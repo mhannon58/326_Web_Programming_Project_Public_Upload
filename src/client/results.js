@@ -20,7 +20,7 @@ function grab(searchTerm){
     return posts.filter(post => {
         let title = post.post_title.toLowerCase();
         let description = post.post_description.toLowerCase();
-        return title.includes(searchTerm) || description.includes(searchTerm);
+        return (title.includes(searchTerm) || description.includes(searchTerm)) && !post.finished;
     });
 }
 
@@ -88,7 +88,6 @@ async function displayListings(container){
             const col2 = document.createElement('div');
             col2.classList.add('col-4','text-end');
             const view = document.createElement('button');
-            // view.setAttribute('onClick', 'window.location.href="./listing.html"'); // button has no specified path
             view.addEventListener("click", function() {
                 localStorage.setItem("curr_post_id", post._id);
                 window.location.href=`/posts/${post._id}`;
