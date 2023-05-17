@@ -11,9 +11,9 @@ async function getPosts(flag)
     {
         let route = '';
         if(flag === 0)
-            route = "/posts/posted/" + localStorage.getItem("curr_user");
+            route = "/posts/posted/" + localStorage.getItem("profile_view_id");
         else
-            route = "/posts/accepted/" + localStorage.getItem("curr_user");
+            route = "/posts/accepted/" + localStorage.getItem("profile_view_id");
         const response = await fetch(route, {
         method: 'GET'
         });
@@ -28,67 +28,76 @@ async function getPosts(flag)
 
 function addChildren(element, posts)
 {
-    for(let elem of posts)
+    if(posts.length !== 0)
     {
-        var firstDiv = document.createElement("div");
-        firstDiv.classList.add("card")
-        firstDiv.classList.add("mb-4")
+        for(let elem of posts)
+        {
+            var firstDiv = document.createElement("div");
+            firstDiv.classList.add("card")
+            firstDiv.classList.add("mb-4")
 
-        var cardBody = document.createElement("div");
-        cardBody.classList.add("card-body")
+            var cardBody = document.createElement("div");
+            cardBody.classList.add("card-body")
 
-        var firstRow = document.createElement("div");
-        firstRow.classList.add("row")
+            var firstRow = document.createElement("div");
+            firstRow.classList.add("row")
 
-        var secondDiv = document.createElement("div");
-        secondDiv.classList.add("col-sm-10")
+            var secondDiv = document.createElement("div");
+            secondDiv.classList.add("col-sm-10")
 
-        var head3 = document.createElement("h3")
-        head3.classList.add("mb-0")
+            var head3 = document.createElement("h3")
+            head3.classList.add("mb-0")
 
-        // will add link
-        var title = document.createElement("a")
-        title.innerHTML = elem.post_title
+            // will add link
+            var title = document.createElement("a")
+            title.innerHTML = elem.post_title
 
-        // add stuff here
-        var dateDiv = document.createElement("div");
-        dateDiv.classList.add("col-sm-2")
-        
-        var datePara = document.createElement("p");
-        datePara.classList.add("text-muted")
-        datePara.classList.add("mb-0")
-        datePara.classList.add("float-right")
-        datePara.innerHTML = elem.deadline
+            // add stuff here
+            var dateDiv = document.createElement("div");
+            dateDiv.classList.add("col-sm-2")
+            
+            var datePara = document.createElement("p");
+            datePara.classList.add("text-muted")
+            datePara.classList.add("mb-0")
+            datePara.classList.add("float-right")
+            datePara.innerHTML = elem.deadline
 
-        var detailsDiv = document.createElement("div");
-        detailsDiv.classList.add("row-mb-4")
+            var detailsDiv = document.createElement("div");
+            detailsDiv.classList.add("row-mb-4")
 
-        var tokensDiv = document.createElement("div");
-        tokensDiv.classList.add("col-2")
+            var tokensDiv = document.createElement("div");
+            tokensDiv.classList.add("col-2")
 
-        var tokensPara = document.createElement("p")
-        tokensPara.classList.add("mb-0")
-        tokensPara.innerHTML = elem.tokens.toString() + " token(s)"
-        // stuff added above
+            var tokensPara = document.createElement("p")
+            tokensPara.classList.add("mb-0")
+            tokensPara.innerHTML = elem.tokens.toString() + " token(s)"
+            // stuff added above
 
-        var desc = document.createElement("p")
-        desc.classList.add("mb-0")
-        desc.classList.add("doc-desc")
-        desc.innerHTML = elem.post_description
+            var desc = document.createElement("p")
+            desc.classList.add("mb-0")
+            desc.classList.add("doc-desc")
+            desc.innerHTML = elem.post_description
 
-        firstDiv.appendChild(cardBody)
-        cardBody.appendChild(firstRow)
-        firstRow.appendChild(secondDiv)
-        secondDiv.appendChild(head3)
-        head3.appendChild(title)
-        firstRow.appendChild(dateDiv)
-        dateDiv.appendChild(datePara)
+            firstDiv.appendChild(cardBody)
+            cardBody.appendChild(firstRow)
+            firstRow.appendChild(secondDiv)
+            secondDiv.appendChild(head3)
+            head3.appendChild(title)
+            firstRow.appendChild(dateDiv)
+            dateDiv.appendChild(datePara)
 
-        element.appendChild(firstDiv)
-        cardBody.appendChild(desc)
-        firstRow.appendChild(detailsDiv)
-        detailsDiv.appendChild(tokensDiv)
-        tokensDiv.appendChild(tokensPara)
+            element.appendChild(firstDiv)
+            cardBody.appendChild(desc)
+            firstRow.appendChild(detailsDiv)
+            detailsDiv.appendChild(tokensDiv)
+            tokensDiv.appendChild(tokensPara)
+        }
+    }
+    else
+    {
+        let noJobs = document.createElement("p");
+        noJobs.innerText = "No jobs in this category!";
+        element.appendChild(noJobs);
     }
 }
 
