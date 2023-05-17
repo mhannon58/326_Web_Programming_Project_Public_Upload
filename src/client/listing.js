@@ -9,7 +9,7 @@ acceptButton.addEventListener('click', async () => {
     accept_id: accept_id 
   };
 
-  await fetch('/postAccepted', {
+  const response = await fetch('/postAccepted', {
     method: 'PUT',
     headers: {
       'Accept': 'application/json',
@@ -17,4 +17,10 @@ acceptButton.addEventListener('click', async () => {
     },
     body: JSON.stringify(data)
   });
+
+  const status = await response.json();
+
+  if (status["status"] === "failure") {
+    alert('Post can no longer be accepted.');
+  }
 });
