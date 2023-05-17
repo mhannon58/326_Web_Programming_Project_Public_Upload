@@ -89,7 +89,7 @@ async function setup() {
   // const profile = await profiles.get('1');
 
   console.log(localStorage.getItem("curr_user"));
-  let route = "/profiles/" + localStorage.getItem("curr_user");
+  let route = "/profiles/" + localStorage.getItem("profile_view_id");
   const response = await fetch(route, {
     method: 'GET'
   });
@@ -101,7 +101,7 @@ async function setup() {
   let posts = [];
 
   async function refresh() {
-    let postedRoute = "/posts/posted/" + localStorage.getItem("curr_user");
+    let postedRoute = "/posts/posted/" + localStorage.getItem("profile_view_id");
     console.log(postedRoute);
     const postedResp = await fetch(postedRoute, {
       method: 'GET'

@@ -27,6 +27,11 @@ async function getUser(id){
 
 // Dynamically create listing elements given a list of posts
 async function displayListings(container){
+    document.getElementById("user-prof").addEventListener("click", () => {
+        localStorage.setItem("profile_view_id", localStorage.getItem("curr_user"));
+        window.location.href = `./profile.html`;
+    });
+    
     container.innerHTML = '';
     if(curr_posts.length <= 0) {
         const message = document.createElement('h5');
@@ -89,7 +94,11 @@ async function displayListings(container){
             userlink.setAttribute('id', 'username')
             userlink.innerText = `@${await getUser(post.profile_id)}`; 
             //userlink.setAttribute('href', `profile/username/${username}`);
-            userlink.setAttribute('href', `profile.html`);
+            // userlink.setAttribute('href', `profile.html`);
+            userlink.addEventListener("click", () => {
+                localStorage.setItem("profile_view_id", post.profile_id)
+                window.location.href = `profile.html`;
+            });
             user.append(userlink);
 
 
