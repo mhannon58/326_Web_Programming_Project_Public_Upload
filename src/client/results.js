@@ -196,7 +196,7 @@ Array.from(sortOptions).forEach(option => option.addEventListener('click', () =>
 
 
 posts = await refresh();
-const getQuery = () => window.location.search.substring(1);
+const getQuery = () => decodeURI(window.location.search.substring(1)); // replaces encoded special chars
 let curr_posts = grab(getQuery());
 
 displayListings(resultsDiv);
