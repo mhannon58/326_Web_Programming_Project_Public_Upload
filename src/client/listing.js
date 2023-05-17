@@ -18,15 +18,7 @@ acceptButton.addEventListener('click', async () => {
     body: JSON.stringify(pack)
   });
 
-<<<<<<< HEAD
-  const status = await response.json();
-
-  if (status["status"] === "failure") {
-    alert('Post can no longer be accepted.');
-  }
-=======
-  const data = await response.json()
+  const data = await response.json();
   alert(data.message);
 
->>>>>>> fa0f9ef (Feedback upon accepting post)
 });
