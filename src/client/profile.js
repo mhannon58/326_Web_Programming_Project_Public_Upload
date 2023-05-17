@@ -1,5 +1,5 @@
-import { loadProfiles, loadPosts } from "./load.js";
-import { getAllPosts } from "./postcrud.js";
+// import { loadProfiles, loadPosts } from "./load.js";
+// import { getAllPosts } from "./postcrud.js";
 
 export let otherProfileName = '';
 
