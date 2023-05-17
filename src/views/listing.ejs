@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OddJobs - <%= post_title %></title>
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/listing.css" rel="stylesheet" type="text/css" />
+  <!-- <script type="module" src="./listing.js" defer></script> -->
+</head>
+
+<body>
+  <iframe src="/navbar.html" width="100%"></iframe>
+  <div id="dynamic-start" class="container">
+    <div class="row mt-3">
+      <div class="col-md-4">
+       <h2><%= post_title %></h2>
+      </div>
+  </div>
+  <div class="row mt-3">
+  <div class="col-md-8">
+<p><%= post_description %></p>  
+</div>
+  <div class="col-md-2">
+    <div class="row">
+      <h4 class="tokens"><strong>Tokens: <%= tokens %></strong></h4>
+    </div>
+    <div class="row">
+      <button id="post" class="btn btn-primary btn-md mt-3" type="submit">Accept</button>
+    </div>
+  </div>
+  </div>
+</div>
+
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
+  <script type="module" src="/listing.js" defer></script>
+</body>

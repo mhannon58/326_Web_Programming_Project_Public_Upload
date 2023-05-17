@@ -82,7 +82,7 @@ async function displayListings(container){
             // view.setAttribute('onClick', 'window.location.href="./listing.html"'); // button has no specified path
             view.addEventListener("click", function() {
                 localStorage.setItem("curr_post_id", post._id);
-                window.location.href=`/listing.html`;
+                window.location.href=`/posts/${post._id}`;
             });
             view.innerText = 'View';
             view.classList.add('btn', 'btn-primary');

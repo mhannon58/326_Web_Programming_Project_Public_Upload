@@ -22,6 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/client'));
 // Use the routes created for posts, stored neatly in it's own file in routes/posts.js
 app.use(postRouter);
+// Set views folder for ejs
+app.set('views', __dirname + '/views');
+
 
 app.get('/', (req, res) => {
   res.redirect('home.html');
