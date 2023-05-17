@@ -18,10 +18,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <form class="d-flex my-auto mx-auto">
+                <div class="d-flex my-auto mx-auto">
                     <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
-                    <input type="button" id="search-btn" class="btn btn-outline-success" value="Search"></input>
-                </form>
+                    <a id="link"><input type="button" id="search-btn" class="btn btn-outline-success" value="Search"></input></a>
+                </div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <div class="dropdown">
@@ -31,8 +31,6 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark scrollable-menu" onclick="event.stopPropagation()" role="menu" id="filter" aria-labelledby="filterDropdown">
                                 <li><input id="tag-search" class="me-2 ms-2 padding-1" type="text" autocomplete="off" placeholder="Tag" aria-label="Search"></li>
-                                <!-- <li><a class="dropdown-item filter" href="#">Clear</a></li>
-                                <div class="dropdown-divider"></div> -->
                                 <li><a class="dropdown-item tag" href="#">School</a></li>
                                 <li><a class="dropdown-item tag" href="#">Labor</a></li>
                                 <li><a class="dropdown-item tag" href="#">Technology</a></li>

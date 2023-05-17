@@ -15,8 +15,9 @@ function initNavbar() {
         // switch to results page
 
         alert(`You searched ${text}.`);
-        window.location = "search.html";
+        document.getElementById('link').setAttribute("href", `search.html?${text}`);
     });
+    searchField.addEventListener('keydown', (e) => {if(e.key === 'Enter'){ searchButton.click(); }});
 
 
     // TODO implement profile functionality

@@ -1,10 +1,10 @@
 const searchText = document.getElementById('search');
 const searchButton = document.getElementById('search-btn');
+const searchContainer = document.getElementById('link');
 const tagSearch = document.getElementById('tag-search');
 const tags = document.getElementsByClassName('tag');
 const sortOptions = document.getElementsByClassName('sort');
 const resultsDiv = document.getElementById('results');
-
 
 let posts = [];
 
@@ -16,8 +16,13 @@ async function refresh(){
     return posts;
 }
 
-posts = await refresh();
-let curr_posts = posts;
+function grab(searchTerm){
+    return posts.filter(post => {
+        let title = post.post_title.toLowerCase();
+        let description = post.post_description.toLowerCase();
+        return title.includes(searchTerm) || description.includes(searchTerm);
+    });
+}
 
 async function getUser(id){
     const response = await fetch(`/profiles/${id}`, {method: 'GET'});
@@ -34,8 +39,12 @@ async function displayListings(container){
     
     container.innerHTML = '';
     if(curr_posts.length <= 0) {
-        const message = document.createElement('h5');
-        message.innerText = 'NO RESULTS; REFRESH THE PAGE';
+        const message = document.createElement('h4');
+        message.innerHTML = `
+            <span id="sad">&#9785;</span> 
+            <br> Sorry, we were not able to find any matches. 
+            <br> Try again.`;
+        message.setAttribute('id', 'no-result');
         container.append(message);
     } else {
         const unacceptedPosts = curr_posts.filter(x=>!x.finished);
@@ -120,20 +129,14 @@ async function displayListings(container){
     }
 }
 
-function grab(){
-    let searchTerm = searchText.value.toLowerCase();
-    return posts.filter(post => {
-        let title = post.post_title.toLowerCase();
-        let description = post.post_description.toLowerCase();
-        return title.includes(searchTerm) || description.includes(searchTerm);
-    });
-}
-
 // Update listings on search
-searchButton.addEventListener('click', ()=>{
-    curr_posts = grab();
-    displayListings(resultsDiv);
-});
+function buildSearch(){
+    let searchTerm = searchText.value === '' ? '' : '?' + searchText.value.toLowerCase();
+    console.log(searchText.value);
+    document.getElementById('link').setAttribute('href', `search.html${searchTerm}`);
+}
+searchButton.addEventListener('click', buildSearch);
+searchText.addEventListener('keydown', (e) => { if(e.key === 'Enter'){ searchButton.click(); } });
 
 // Tag search
 tagSearch.addEventListener('input', () => {
@@ -146,13 +149,12 @@ tagSearch.addEventListener('input', () => {
     }
 });
 
-
 // Filter listings based on selected tags
 Array.from(tags).forEach(tagElement => tagElement.addEventListener('click', () => {
     if(tagElement.classList.value.includes('active')) { 
         tagElement.classList.remove('active');
         const remainingActive = Array.from(document.getElementsByClassName('active'));
-        curr_posts = grab();
+        curr_posts = grab('');
         if(remainingActive.length > 0) {
             curr_posts = curr_posts.filter(post => {
                 for(let t of remainingActive) {
@@ -196,5 +198,10 @@ Array.from(sortOptions).forEach(option => option.addEventListener('click', () =>
     }
     displayListings(resultsDiv);
 }));
+
+
+posts = await refresh();
+let query = window.location.search.substring(1);
+let curr_posts = grab(query);
 
 displayListings(resultsDiv);
