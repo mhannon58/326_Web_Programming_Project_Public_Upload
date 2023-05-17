@@ -67,7 +67,7 @@ postButton.addEventListener('click', async () => {
             post_description: desc,
             post_tags: tags,
             profile_id: localStorage.getItem("curr_user"),
-            tokens: tokens,
+            tokens: Number(tokens),
             deadline: date
         }
 
