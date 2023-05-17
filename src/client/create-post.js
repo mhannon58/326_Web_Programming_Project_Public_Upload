@@ -1,5 +1,5 @@
-import { getNextId, createPost } from "./postcrud.js";
-import { Crud } from './pouchdb.js';
+// import { getNextId, createPost } from "./postcrud.js";
+// import { Crud } from './pouchdb.js';
 
 import { initNavbar } from "./navbar.js";
 
@@ -12,14 +12,14 @@ const tokenNumber = document.getElementById('tokens');
 const deadline = document.getElementById('deadline');
 const postTags = document.getElementById('tags');
 
-const signupObj = new Crud('signup_db')
+// const signupObj = new Crud('signup_db')
 
 postButton.addEventListener('click', async () => {
     const title = postTitle.value;
     const desc = postContent.value;
     const tokens = tokenNumber.value;
     const date = deadline.value;
-    const tags = [...postTags.options].filter(option => option.selected).map(option => option.textContent).join(' ');
+    const tags = [...postTags.options].filter(option => option.selected).map(option => option.textContent).join(' ').toLowerCase();
     console.log(tags);
 
     // check for missing fields
