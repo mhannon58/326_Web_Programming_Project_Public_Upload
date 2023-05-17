@@ -55,7 +55,22 @@ CRUD_reviews.getAllReviews().then((reviews) =>{
 
 let reviewee = localStorage.getItem("profile_view_id")
 
-let response = await fetch("/reviews/"+ reviewee, {
+let route = "/profiles/" + localStorage.getItem("profile_view_id");
+
+let response = await fetch(route, {
+method: 'GET'
+});
+
+const profile = await response.json();
+
+const profileName = document.getElementById('full-name');
+profileName.textContent = `${profile.user_name}`;
+
+// set email
+const email = document.getElementById('email');
+email.textContent = profile.email;
+
+response = await fetch("/reviews/"+ reviewee, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json'
