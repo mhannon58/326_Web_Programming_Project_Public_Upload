@@ -156,7 +156,8 @@ Array.from(tags).forEach(tagElement => tagElement.addEventListener('click', () =
         if(remainingActive.length > 0) {
             curr_posts = curr_posts.filter(post => {
                 for(let t of remainingActive) {
-                    if(post.post_tags.join(' ').includes(t.innerText.toLowerCase())){
+                    console.log(t);
+                    if(post.post_tags.toLowerCase().includes(t.innerText.toLowerCase())){
                         return true
                     }
                 }
@@ -165,7 +166,7 @@ Array.from(tags).forEach(tagElement => tagElement.addEventListener('click', () =
         } 
     } else {
         tagElement.classList.add('active');
-        curr_posts = curr_posts.filter(post => post.post_tags.includes(tagElement.innerText.toLowerCase()));
+        curr_posts = curr_posts.filter(post => post.post_tags.toLowerCase().includes(tagElement.innerText.toLowerCase()));
     }
     displayListings(resultsDiv);
 }));

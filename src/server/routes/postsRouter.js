@@ -258,21 +258,21 @@ router.put("/postAccepted", async (req, res) => {
 
     if (!post) {
       console.log(`Could not find post with id ${post_id}`);
-      res.status(500).send();
+      res.status(404).send({ status: "failure", message: "Could not find post"});
       return;
     }
 
     // post has already been finished
     if (post.finished) {
       console.log(`Post ${post_id} has already been finished`);
-      res.status(200).send({ status: "failure" });
+      res.status(400).send({ status: "failure", message: "Post has already been finished" });
       return;
     }
 
     // post has already been accepted
     if (post.accept_id) {
       console.log(`Failure to accept listing with id ${post_id}; post has already been accepted by user ${post.accept_id}`);
-      res.status(200).send({ status: "failure" });
+      res.status(400).send({ status: "failure", message: "Post has already been accepted" });
       return;
     }
 
@@ -281,7 +281,7 @@ router.put("/postAccepted", async (req, res) => {
     await client.db("db").collection("posts").updateOne({ "_id": new ObjectId(post_id) }, update);
 
     console.log(`Listing with id ${post_id} has been accepted by user ${accept_id}`);
-    res.status(200).send({ status: "success" });
+    res.status(200).send({ status: "success", message: "Post has been accepted!"});
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
