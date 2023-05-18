@@ -1,4 +1,7 @@
 import express from "express";
+import expressSession from 'express-session';
+import users from '../users.js';
+import auth from '../auth.js';
 
 const router = express.Router();
 
