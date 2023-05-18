@@ -181,6 +181,13 @@ router.get("/posts/:postID", async (req, res) => {
   }
 });
 
+// GET request to return all profiles
+router.get("/profiles", async (req, res) => {
+  const data = await client.db("db").collection("profiles").find().toArray();
+
+  res.status(200).send(data);
+});
+
 // GET request to return specific profile
 router.get("/profiles/:profileID", async (req, res) => {
   try {
