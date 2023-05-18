@@ -10,22 +10,13 @@
   <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="create-post.css" rel="stylesheet" type="text/css" />
   <link href="history.css" rel="stylesheet" type="text/css" />
-  <script src="//cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
+  <!-- <script src="//cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script> -->
   <script type="module" src="./history.js" defer></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">OddJobs</a>
-      <form class="d-flex">
-        <input id="search-field" class="form-control me-2 mt-2" type="search" placeholder="Search" aria-label="Search">
-        <button id="search-button" class="btn btn-outline-success mt-2" type="button">Search</button>
-      </form>
-      <img id="profile" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 20px;">
-    </div>
-  </nav>
+  <iframe src="navbar.html" width="100%"></iframe>
+
   <div class="container">
     <h1>Posted Job History</h1>
     <div id="posted-start" class="col-lg-8"></div><br>

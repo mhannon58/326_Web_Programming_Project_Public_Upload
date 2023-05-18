@@ -123,6 +123,10 @@ async function setup() {
   // set email
   const email = document.getElementById('email');
   email.textContent = profile.email;
+
+  // set tokens
+  const tokens = document.getElementById('tokens');
+  tokens.textContent = `Tokens: ${profile.tokens}`;
 }
 
 // need to be able to read the mock_profiles
