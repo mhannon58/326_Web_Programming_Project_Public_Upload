@@ -1,8 +1,4 @@
 import { Crud } from './pouchdb.js';
-import { initNavbar } from './navbar.js';
-
-initNavbar();
-
 // let historyObj = new Crud('Posts');
 
 async function getPosts(flag)

@@ -1,9 +1,6 @@
 // import { getNextId, createPost } from "./postcrud.js";
 // import { Crud } from './pouchdb.js';
 
-import { initNavbar } from "./navbar.js";
-
-initNavbar();
 
 const postTitle = document.getElementById('title');
 const postContent = document.getElementById('description');
