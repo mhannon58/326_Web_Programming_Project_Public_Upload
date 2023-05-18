@@ -24,7 +24,7 @@ function displayListings(posts, container){
 
       const description = document.createElement('p');
       description.setAttribute('id', 'description');
-      description.innerText = `${post.post_description.slice(0,251)} ...`;
+      description.innerText = post.post_description.length > 250 ? post.post_description.slice(0,251)+ "..." : post.post_description;;
 
       const tags = document.createElement('p');
       tags.setAttribute('id', 'tags');
@@ -45,14 +45,14 @@ function displayListings(posts, container){
       col2.classList.add('col-4','text-end');
 
       const view = document.createElement('button');
-      view.setAttribute('onclick', 'null'); // button has no path
+      view.addEventListener("click", function() {
+        localStorage.setItem("curr_post_id", post._id);
+        window.location.href=`/posts/${post._id}`;
+      });
       view.innerText = 'View';
       view.classList.add('btn', 'btn-primary');
       view.setAttribute('type', 'button');
 
-      const user = document.createElement('p');
-      user.setAttribute('id', 'name');
-      user.innerText = `User # ${post.profile_id}`; // placeholder username, eventually links to profile
 
       const tokens = document.createElement('p');
       tokens.classList.add('mb-0');
@@ -60,7 +60,6 @@ function displayListings(posts, container){
       tokens.innerText = "Tokens: " + post.tokens;
 
       col2.append(view);
-      col2.append(user);
       col2.append(tokens);
 
       row.append(col1);
