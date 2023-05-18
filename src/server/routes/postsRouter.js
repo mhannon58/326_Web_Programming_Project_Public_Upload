@@ -62,7 +62,7 @@ router.post("/posts", async (req, res) => {
 
     console.log(`New listing created with the following id: ${result.insertedId}`);
     console.log(`Profile ${profile_id}'s new token amount is ${profile.tokens - tokens}`);
-    res.status(200).send();
+    res.status(200).send(result.insertedId);
   } catch (err) {
     console.error(err);
     res.status(500).send(err);

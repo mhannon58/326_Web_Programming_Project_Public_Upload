@@ -68,13 +68,17 @@ postButton.addEventListener('click', async () => {
             deadline: date
         }
 
-        await fetch("/posts", {
+        const res = await fetch("/posts", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(pack)
-          });
+        });
+
+        const id = await res.json();
+
+        window.location.replace('/posts/' + id);
     }
 });
 
