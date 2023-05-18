@@ -4,6 +4,8 @@ let postdb = new PouchDB('Posts')
 let generaldb = new PouchDB('General')
 let reviewdb = new PouchDB('Reviews')
 let userdb = new Crud('signup_db');
+
+//With the input of an html element, title and desc of a review, populates a single review in the html
 function populateReview(element, title_text, desc_text){
     var firstDiv = document.createElement("div");
     firstDiv.classList.add("card")
@@ -42,20 +44,28 @@ function populateReview(element, title_text, desc_text){
 
 const reviewLoc = document.getElementById('reviews')
 const reviewButton = document.getElementById('review-button')
-/*
-CRUD_reviews.getAllReviews().then((reviews) =>{
-    console.log((reviews.rows))
-    for( let r of reviews.rows){
-        console.log(typeof(r.doc.Title))
-        populateReview(reviewLoc, r.doc.Title, r.doc.Description)
-    }
-})
-*/
 
-
+//Establish the id of the profile we are viewing
 let reviewee = localStorage.getItem("profile_view_id")
 
-let response = await fetch("/reviews/"+ reviewee, {
+//Fetch Profile
+let route = "/profiles/" + localStorage.getItem("profile_view_id");
+let response = await fetch(route, {
+method: 'GET'
+});
+
+const profile = await response.json();
+
+//set Username
+const profileName = document.getElementById('full-name');
+profileName.textContent = `${profile.user_name}`;
+
+// set email
+const email = document.getElementById('email');
+email.textContent = profile.email;
+
+//obtain all previous reviews
+response = await fetch("/reviews/"+ reviewee, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json'
@@ -63,8 +73,10 @@ let response = await fetch("/reviews/"+ reviewee, {
     //body: JSON.stringify(pack)
 });
 
+
+//loop through and populate file with the reviews
 response = await response.json()
 for(let e of response){
     populateReview(reviewLoc, e.title, e.description)
 }
-//window.location.replace("profile-reviews.html")
+
