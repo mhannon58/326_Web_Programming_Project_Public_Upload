@@ -145,8 +145,7 @@ router.get("/posts/accepted/:profileID", async (req, res) => {
 });
 
 // GET request to return specific post
-/*
-router.get("/posts/:postID", async (req, res) => {
+router.get("/posts/post/:postID", async (req, res) => {
   try {
     const post = await client.db("db").collection("posts").findOne(new ObjectId(req.params.postID));
 
@@ -162,7 +161,6 @@ router.get("/posts/:postID", async (req, res) => {
     res.status(500).send(err);
   }
 });
-*/
 
 // GET request to return specific post
 router.get("/posts/:postID", async (req, res) => {
@@ -300,14 +298,14 @@ router.put("/postFinished", async (req, res) => {
 
     if (!post) {
       console.log(`Could not find post with id ${post_id}`);
-      res.status(500).send();
+      res.status(404).send({ status: "failure", message: "Could not find post"});
       return;
     }
 
     // post has already been finished
     if (post.finished) {
       console.log(`Post ${post_id} has already been finished`);
-      res.status(200).send({ status: "failure" });
+      res.status(400).send({ status: "failure", message: "Post has already been finished" });
       return;
     }
 
@@ -318,7 +316,7 @@ router.put("/postFinished", async (req, res) => {
 
       if (!user) {
         console.log(`User ${post.accept_id} not found. Could not mark post as finished.`);
-        res.status(500).send({ status: "failure" });
+        res.status(404).send({ status: "failure", message: `User not found` });
         return;
       }
 
@@ -338,7 +336,7 @@ router.put("/postFinished", async (req, res) => {
 
       if (!user) {
         console.log(`User ${post.profile_id} not found. Could not mark post as finished.`);
-        res.status(500).send({ status: "failure" });
+        res.status(404).send({ status: "failure", message: `User not found` });
         return;
       }
 
@@ -351,14 +349,13 @@ router.put("/postFinished", async (req, res) => {
       await client.db("db").collection("profiles").updateOne({ "_id": new ObjectId(post.profile_id) }, update);
     }
 
-    res.status(200).send({ status: "success" });
+    res.status(200).send({ status: "success", message: "Post has been finished!" });
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
   }
 });
 
-// TODO add delete to router
 router.delete("/deleteReview", async (req, res) => {
   const { reviewID } = req.body;
 
