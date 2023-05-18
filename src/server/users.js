@@ -1,7 +1,21 @@
+import fetch from 'node-fetch';
+
 class Users {
     constructor() {
       // backdoor
       this.users = { yaboi: ['123', '@umass'] };
+      this.init();
+    }
+
+    async init() {
+      let response = await fetch('http://localhost:3000/profiles', {
+        method: 'GET'
+      });
+      let profiles = await response.json();
+      for(let profile of profiles)
+      {
+        this.users[profile["user_name"]] = [profile["password"], profile["email"]];
+      }
     }
   
     findUser(username) {
