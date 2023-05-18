@@ -1,0 +1,11 @@
+#user {
+    width: 30px;
+    height: 30px;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+#user:hover {
+    -webkit-filter: brightness(0%);
+    filter: brightness(0%);
+}
